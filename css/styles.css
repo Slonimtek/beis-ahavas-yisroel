@@ -199,6 +199,34 @@ img { max-width: 100%; display: block; }
 .placeholder-note { color: var(--muted); font-size: 0.95rem; margin-bottom: 0; }
 .section-navy .placeholder-note { color: var(--cream-dark); }
 
+.statement-block { margin-top: 1.5rem; }
+.statement-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-weight: 700;
+  margin: 1.5rem 0 0.5rem;
+}
+.statement-label:first-child { margin-top: 0; }
+.vision-statement {
+  margin: 0;
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--gold);
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+.mission-statement { margin: 0; }
+
+.schedule-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 1.25rem;
+}
+
 .edit-flag {
   display: inline-block;
   background: #fff4d6;
