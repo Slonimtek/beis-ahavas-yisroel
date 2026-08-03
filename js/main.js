@@ -1,0 +1,79 @@
+// Beis Ahavas Yisroel — site behavior: mobile nav + live zmanim from Hebcal.
+
+(function () {
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  var navToggle = document.getElementById('navToggle');
+  var siteNav = document.getElementById('siteNav');
+  if (navToggle && siteNav) {
+    navToggle.addEventListener('click', function () {
+      var isOpen = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    siteNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        siteNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // Dallas, TX (geonameid confirmed against Hebcal's own lookup).
+  var GEONAME_ID = 4684888;
+  var thisWeekEl = document.getElementById('thisWeek');
+
+  function fmtTime(iso, tzid) {
+    try {
+      return new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: tzid });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function renderThisWeek(data) {
+    var items = data.items || [];
+    var candles = items.find(function (i) { return i.category === 'candles'; });
+    var havdalah = items.find(function (i) { return i.category === 'havdalah'; });
+    var parsha = items.find(function (i) { return i.category === 'parashat'; });
+    var hebdate = items.find(function (i) { return i.category === 'hebdate'; });
+    // Always render in the shul's own timezone, not the visitor's device timezone.
+    var tzid = (data.location && data.location.tzid) || 'America/Chicago';
+
+    var html = '';
+    if (parsha) {
+      html += '<p class="tw-parsha">' + parsha.title + '</p>';
+    }
+    if (hebdate) {
+      html += '<p class="tw-hebdate">' + hebdate.hebrew + '</p>';
+    }
+    html += '<div class="tw-grid">';
+    if (candles) {
+      html += '<div class="tw-item"><div class="tw-label">Candle Lighting</div><div class="tw-value">' + fmtTime(candles.date, tzid) + '</div></div>';
+    }
+    if (havdalah) {
+      html += '<div class="tw-item"><div class="tw-label">Havdalah</div><div class="tw-value">' + fmtTime(havdalah.date, tzid) + '</div></div>';
+    }
+    html += '<div class="tw-item"><div class="tw-label">Location</div><div class="tw-value">' + (data.location ? data.location.title : 'Dallas, TX') + '</div></div>';
+    html += '</div>';
+
+    thisWeekEl.innerHTML = html;
+  }
+
+  function renderFallback() {
+    thisWeekEl.innerHTML =
+      '<p class="loading-text">Couldn&rsquo;t load this week&rsquo;s times automatically. ' +
+      '<a href="https://www.hebcal.com/shabbat?geonameid=' + GEONAME_ID + '" target="_blank" rel="noopener" style="color:var(--gold-light)">See this week&rsquo;s Shabbos times on Hebcal &rarr;</a></p>';
+  }
+
+  if (thisWeekEl) {
+    var url = 'https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEONAME_ID + '&M=on&b=18';
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('Hebcal request failed');
+        return res.json();
+      })
+      .then(renderThisWeek)
+      .catch(renderFallback);
+  }
+})();
