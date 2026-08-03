@@ -14,16 +14,15 @@ Then open http://localhost:8420
 
 ## Deploy
 
-It's a static site, so any of these work with zero config:
+**Live now:** https://slonimtek.github.io/beis-ahavas-yisroel/ (GitHub Pages,
+repo `Slonimtek/beis-ahavas-yisroel`, public, builds from `main`/`/`). To publish
+an update: commit, `git push`, Pages rebuilds in ~1 minute.
 
-- **GitHub Pages** — push this repo to GitHub, enable Pages on the `main` branch.
-- **Netlify / Vercel** — drag-and-drop the folder, or connect the repo.
+## Before going live for real — fill these in
 
-## Before going live — fill these in
-
-- [ ] **Contact email** — currently `info@beisahavasyisroel.org` (placeholder domain) in `index.html`. Replace with your real address, or register that domain.
-- [ ] **Phone number** — `[shul phone number]` appears 3× in `index.html` (Shabbos Meals, Community Meal, Contact).
-- [ ] **Exact street address** — only "Preston Creek St, Dallas, TX" is on the page right now; add the house/suite number in the Contact section and in the map `src` URL.
+- [x] **Exact street address** — 6031 Prestoncrest Ln, Dallas, TX (Contact section + map).
+- [ ] **Contact email** — currently `info@beisahavasyisroel.org (testing data)` (placeholder domain) in `index.html`. Replace with your real address, or register that domain.
+- [ ] **Phone number** — `214-555-0182 (testing data)` appears 3× in `index.html` (Shabbos Meals, Community Meal, Contact). Replace with the real number.
 - [ ] **Weekly tefillah schedule** — the times table in the Schedule section is a placeholder; replace with your actual Shacharis/Mincha/Maariv times.
 - [ ] **Vision & Mission** — placeholder text; swap in your real statement once it's ready.
 - [ ] **Photos** — drop images into `images/` and add them to the Photos section once you have them (after your first Shabbos).
