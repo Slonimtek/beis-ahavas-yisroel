@@ -1,0 +1,43 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beis Ahavas Yisroel emblem">
+  <defs>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e2c37a"/>
+      <stop offset="0.5" stop-color="#c19a45"/>
+      <stop offset="1" stop-color="#9c7628"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Threshold / base platform -->
+  <rect x="20" y="105" width="80" height="5" rx="2.2" fill="url(#goldGrad)"/>
+  <rect x="24" y="101" width="72" height="4" rx="1.8" fill="url(#goldGrad)" opacity="0.85"/>
+
+  <!-- Arch (Beis = house · a shul gateway / Jerusalem arch) -->
+  <path d="M26 101 L26 62 A34 34 0 0 1 94 62 L94 101"
+        fill="none" stroke="url(#goldGrad)" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M33 101 L33 64 A27 27 0 0 1 87 64 L87 101"
+        fill="none" stroke="url(#goldGrad)" stroke-width="1.2" opacity="0.55"/>
+
+  <!-- Lone Star keystone (Dallas) at the crown of the arch -->
+  <path d="M60 33 L61.70 37.65 L66.66 37.84 L62.76 40.90 L64.11 45.66 L60 42.9 L55.89 45.66 L57.24 40.90 L53.34 37.84 L58.30 37.65 Z"
+        fill="url(#goldGrad)"/>
+
+  <!-- Star of David (Israel) -->
+  <g stroke="url(#goldGrad)" stroke-width="2.2" fill="none" stroke-linejoin="round">
+    <path d="M60 54 L49.61 72 L70.39 72 Z"/>
+    <path d="M60 78 L49.61 60 L70.39 60 Z"/>
+  </g>
+
+  <!-- Torah scroll (Torah / tradition) at the base -->
+  <g>
+    <rect x="46" y="90" width="28" height="12" rx="1.5" fill="#fbf7ee" stroke="url(#goldGrad)" stroke-width="1"/>
+    <line x1="51" y1="93.5" x2="69" y2="93.5" stroke="#9c7628" stroke-width="1" opacity="0.5"/>
+    <line x1="51" y1="96.5" x2="69" y2="96.5" stroke="#9c7628" stroke-width="1" opacity="0.5"/>
+    <line x1="51" y1="99.5" x2="64" y2="99.5" stroke="#9c7628" stroke-width="1" opacity="0.5"/>
+    <rect x="39" y="87" width="7" height="18" rx="3.5" fill="url(#goldGrad)"/>
+    <ellipse cx="42.5" cy="87" rx="5" ry="2.4" fill="url(#goldGrad)"/>
+    <ellipse cx="42.5" cy="105" rx="5" ry="2.4" fill="url(#goldGrad)"/>
+    <rect x="74" y="87" width="7" height="18" rx="3.5" fill="url(#goldGrad)"/>
+    <ellipse cx="77.5" cy="87" rx="5" ry="2.4" fill="url(#goldGrad)"/>
+    <ellipse cx="77.5" cy="105" rx="5" ry="2.4" fill="url(#goldGrad)"/>
+  </g>
+</svg>

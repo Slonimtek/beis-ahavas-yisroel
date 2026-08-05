@@ -5,20 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Beis Ahavas Yisroel &middot; בית אהבת ישראל &middot; Dallas, TX</title>
 <meta name="description" content="Beis Ahavas Yisroel — a new Nusach Sefard congregation in Dallas, Texas. Schedule, Shabbos meals, community meal, and more.">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<meta name="theme-color" content="#122744">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
+<header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a class="brand" href="#home">
-      <span class="brand-he" dir="rtl" lang="he">בית אהבת ישראל</span>
-      <span class="brand-en">Beis Ahavas Yisroel</span>
+    <a class="brand" href="#home" aria-label="Beis Ahavas Yisroel — home">
+      <img class="brand-mark" src="images/logo.svg" alt="" width="48" height="48">
+      <span class="brand-text">
+        <span class="brand-he" dir="rtl" lang="he">בית אהבת ישראל</span>
+        <span class="brand-en">Beis Ahavas Yisroel</span>
+      </span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -38,36 +43,49 @@
 <main id="main">
 
   <section id="home" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-inner">
-      <p class="hero-eyebrow">A new congregation in Dallas, Texas &middot; נוסח ספרד</p>
+      <img class="hero-emblem" src="images/logo.svg" alt="Beis Ahavas Yisroel emblem" width="150" height="150">
+      <p class="hero-eyebrow">A new congregation in Dallas, Texas &middot; <span dir="rtl" lang="he">נוסח ספרד</span></p>
       <h1 dir="rtl" lang="he">בית אהבת ישראל</h1>
       <p class="hero-en-name">Beis Ahavas Yisroel</p>
       <p class="hero-tagline">A warm, welcoming Nusach Sefard shul &mdash; join us for davening, Shabbos meals, and community.</p>
       <div class="hero-announcement">
-        <strong>We&rsquo;re opening our doors!</strong>
-        Please join us for our very first Shabbos &mdash; this week includes a Shabbos luncheon after Kiddush. See this week&rsquo;s times below.
+        <span class="ann-badge">New</span>
+        <span><strong>We&rsquo;re opening our doors!</strong> Please join us for our very first Shabbos &mdash; this week includes a Shabbos luncheon after Kiddush. See this week&rsquo;s times below.</span>
       </div>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#schedule">This Week&rsquo;s Times</a>
         <a class="btn btn-outline" href="#contact">Get in Touch</a>
       </div>
     </div>
+    <div class="hero-arches" aria-hidden="true">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 60 V30 Q0 0 30 0 H90 Q120 0 120 30 V60 M120 60 V30 Q120 0 150 0 H210 Q240 0 240 30 V60 M240 60 V30 Q240 0 270 0 H330 Q360 0 360 30 V60 M360 60 V30 Q360 0 390 0 H450 Q480 0 480 30 V60 M480 60 V30 Q480 0 510 0 H570 Q600 0 600 30 V60 M600 60 V30 Q600 0 630 0 H690 Q720 0 720 30 V60 M720 60 V30 Q720 0 750 0 H810 Q840 0 840 30 V60 M840 60 V30 Q840 0 870 0 H930 Q960 0 960 30 V60 M960 60 V30 Q960 0 990 0 H1050 Q1080 0 1080 30 V60 M1080 60 V30 Q1080 0 1110 0 H1170 Q1200 0 1200 30 V60 Z" />
+      </svg>
+    </div>
   </section>
 
   <section id="vision" class="section section-cream">
     <div class="section-inner narrow">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Our Vision &amp; Mission</h2>
       <div class="statement-block">
-        <h3 class="statement-label">Vision</h3>
-        <blockquote class="vision-statement">A welcoming shtibel of seriousness and warmth &mdash; built from the strengths of two communities.</blockquote>
-        <h3 class="statement-label">Mission</h3>
-        <p class="mission-statement">We offer a warm and serious place for Shabbos davening. As our community grows, we hope to add daily minyanim and regular shiurim, remaining a stable and welcoming shtibel sustained by its ba&rsquo;alei batim.</p>
+        <div class="statement-card">
+          <h3 class="statement-label">Vision</h3>
+          <blockquote class="vision-statement">A welcoming shtibel of seriousness and warmth &mdash; built from the strengths of two communities.</blockquote>
+        </div>
+        <div class="statement-card">
+          <h3 class="statement-label">Mission</h3>
+          <p class="mission-statement">We offer a warm and serious place for Shabbos davening. As our community grows, we hope to add daily minyanim and regular shiurim, remaining a stable and welcoming shtibel sustained by its ba&rsquo;alei batim.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="schedule" class="section">
     <div class="section-inner">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Schedule &amp; <span dir="rtl" lang="he">לוח</span></h2>
 
       <div class="this-week-card" id="thisWeek" aria-live="polite">
@@ -94,31 +112,34 @@
 
   <section id="shabbos-meals" class="section section-cream">
     <div class="section-inner narrow">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Shabbos Meals</h2>
-      <p>Want to host a Shabbos meal, or join one? We&rsquo;re building a warm table for our new community &mdash; every guest and every host makes it richer.</p>
+      <p class="lead">Want to host a Shabbos meal, or join one? We&rsquo;re building a warm table for our new community &mdash; every guest and every host makes it richer.</p>
       <div class="cta-card">
         <p>To host or be hosted for a Shabbos meal, please reach out to us directly:</p>
-        <p class="contact-line">✉️ <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> (testing data) &nbsp;&middot;&nbsp; 📞 <span class="edit-flag-inline">214-555-0182 (testing data)</span></p>
+        <p class="contact-line"><span class="ci">✉️</span> <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> (testing data) &nbsp;&middot;&nbsp; <span class="ci">📞</span> <span class="edit-flag-inline">214-555-0182 (testing data)</span></p>
       </div>
     </div>
   </section>
 
   <section id="community-meal" class="section">
     <div class="section-inner narrow">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Monthly Community Meal</h2>
-      <p>Once a month, our whole community gathers for a meal together &mdash; open to everyone, no matter how new you are or how long you&rsquo;ve been here.</p>
+      <p class="lead">Once a month, our whole community gathers for a meal together &mdash; open to everyone, no matter how new you are or how long you&rsquo;ve been here.</p>
       <div class="cta-card cta-card-gold">
         <p><strong>A donation is warmly appreciated &mdash; but never required.</strong> Come as you are; the meal is about being together, not about what you give.</p>
-        <p class="contact-line">To RSVP: ✉️ <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> (testing data) &nbsp;&middot;&nbsp; 📞 <span class="edit-flag-inline">214-555-0182 (testing data)</span></p>
+        <p class="contact-line">To RSVP: <span class="ci">✉️</span> <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> (testing data) &nbsp;&middot;&nbsp; <span class="ci">📞</span> <span class="edit-flag-inline">214-555-0182 (testing data)</span></p>
       </div>
     </div>
   </section>
 
-  <section id="donate" class="section section-navy">
+  <section id="donate" class="section section-gold">
     <div class="section-inner narrow center">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Donate</h2>
       <p class="donate-copy">We&rsquo;re setting up our giving options and will have them here soon.</p>
-      <div class="placeholder-card placeholder-card-dark">
+      <div class="placeholder-card">
         <p>Donations &mdash; coming soon.</p>
         <p class="placeholder-note">Want to support us in the meantime? <a href="#contact">Reach out</a> and we&rsquo;ll follow up directly.</p>
       </div>
@@ -127,6 +148,7 @@
 
   <section id="photos" class="section section-cream">
     <div class="section-inner narrow center">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Photos</h2>
       <div class="placeholder-card">
         <p>Photos coming soon &mdash; right after our very first Shabbos!</p>
@@ -136,6 +158,7 @@
 
   <section id="contact" class="section">
     <div class="section-inner">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Location &amp; Contact</h2>
       <div class="contact-grid">
         <div class="contact-info">
@@ -146,8 +169,8 @@
             Dallas, TX
           </address>
           <h3>Reach Us</h3>
-          <p>✉️ <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> (testing data)</p>
-          <p>📞 <span class="edit-flag-inline">214-555-0182 (testing data)</span></p>
+          <p><span class="ci">✉️</span> <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> (testing data)</p>
+          <p><span class="ci">📞</span> <span class="edit-flag-inline">214-555-0182 (testing data)</span></p>
         </div>
         <div class="contact-map">
           <iframe
@@ -164,8 +187,9 @@
 </main>
 
 <footer class="site-footer">
+  <img class="footer-mark" src="images/logo.svg" alt="" width="64" height="64">
   <p dir="rtl" lang="he" class="footer-he">בית אהבת ישראל</p>
-  <p>Beis Ahavas Yisroel &middot; Nusach Sefard &middot; Dallas, Texas</p>
+  <p class="footer-en">Beis Ahavas Yisroel &middot; Nusach Sefard &middot; Dallas, Texas</p>
   <p class="footer-fine">&copy; <span id="year"></span> Beis Ahavas Yisroel</p>
 </footer>
 

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e2c37a"/>
+      <stop offset="1" stop-color="#a97f36"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#16304f"/>
+  <!-- arch -->
+  <path d="M16 52 L16 32 A16 16 0 0 1 48 32 L48 52"
+        fill="none" stroke="url(#fg)" stroke-width="2.6" stroke-linecap="round"/>
+  <!-- Star of David -->
+  <g stroke="url(#fg)" stroke-width="2" fill="none" stroke-linejoin="round">
+    <path d="M32 28 L24.2 41.5 L39.8 41.5 Z"/>
+    <path d="M32 46 L24.2 32.5 L39.8 32.5 Z"/>
+  </g>
+</svg>
