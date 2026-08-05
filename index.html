@@ -147,11 +147,51 @@
   </section>
 
   <section id="photos" class="section section-cream">
-    <div class="section-inner narrow center">
+    <div class="section-inner">
       <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Photos</h2>
-      <div class="placeholder-card">
-        <p>Photos coming soon &mdash; right after our very first Shabbos!</p>
+      <p class="lead">A first look at our home on Preston Crest Lane &mdash; more to come after our very first Shabbos.</p>
+      <div class="gallery">
+        <button class="gallery-item" data-full="images/gallery/shul-01.jpg" data-cap="Our home on Preston Crest Lane">
+          <img src="images/gallery/shul-01-thumb.jpg" alt="Our home on Preston Crest Lane, Dallas" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Our home on Preston Crest Lane</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-02.jpg" data-cap="Shaded by a grand Texas oak">
+          <img src="images/gallery/shul-02-thumb.jpg" alt="Front of the building shaded by a large oak tree" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Shaded by a grand Texas oak</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-03.jpg" data-cap="The main room — light and open">
+          <img src="images/gallery/shul-03-thumb.jpg" alt="Bright main room with fireplace and shelving" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">The main room &mdash; light and open</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-04.jpg" data-cap="A place to learn and gather">
+          <img src="images/gallery/shul-04-thumb.jpg" alt="Room with fireplace and built-in shelves" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">A place to learn and gather</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-05.jpg" data-cap="Room to come together">
+          <img src="images/gallery/shul-05-thumb.jpg" alt="Open living area with natural light" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Room to come together</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-06.jpg" data-cap="Bright bay windows">
+          <img src="images/gallery/shul-06-thumb.jpg" alt="Room with large bay windows" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Bright bay windows</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-07.jpg" data-cap="The kitchen — ready for Kiddush">
+          <img src="images/gallery/shul-07-thumb.jpg" alt="Kitchen with counters and appliances" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">The kitchen &mdash; ready for Kiddush</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-08.jpg" data-cap="Approaching the entrance">
+          <img src="images/gallery/shul-08-thumb.jpg" alt="Driveway approach to the building" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Approaching the entrance</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-09.jpg" data-cap="Green grounds">
+          <img src="images/gallery/shul-09-thumb.jpg" alt="Rear exterior with lawn and trees" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Green grounds</span>
+        </button>
+        <button class="gallery-item" data-full="images/gallery/shul-10.jpg" data-cap="Room to grow">
+          <img src="images/gallery/shul-10-thumb.jpg" alt="Backyard with mature oak tree" loading="lazy" width="760" height="507">
+          <span class="gallery-cap">Room to grow</span>
+        </button>
       </div>
     </div>
   </section>
@@ -192,6 +232,16 @@
   <p class="footer-en">Beis Ahavas Yisroel &middot; Nusach Sefard &middot; Dallas, Texas</p>
   <p class="footer-fine">&copy; <span id="year"></span> Beis Ahavas Yisroel</p>
 </footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lightbox-btn lightbox-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lightbox-btn lightbox-prev" id="lbPrev" aria-label="Previous photo">&#8249;</button>
+  <figure class="lightbox-figure">
+    <img class="lightbox-img" id="lbImg" src="" alt="">
+    <figcaption class="lightbox-cap" id="lbCap"></figcaption>
+  </figure>
+  <button class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">&#8250;</button>
+</div>
 
 <script src="js/main.js"></script>
 </body>
