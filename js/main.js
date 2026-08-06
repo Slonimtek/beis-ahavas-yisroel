@@ -42,7 +42,10 @@
 
     var html = '';
     if (parsha) {
-      html += '<p class="tw-parsha">' + parsha.title + '</p>';
+      // Hebcal returns Sephardi spelling ("Parashat"); the shul's voice is
+      // Ashkenazi/Nusach Sefard ("Parshas") to match Shabbos/Shacharis/Kiddush.
+      var parshaTitle = parsha.title.replace(/^Parashat\s+/, 'Parshas ');
+      html += '<p class="tw-parsha">' + parshaTitle + '</p>';
     }
     if (hebdate) {
       html += '<p class="tw-hebdate">' + hebdate.hebrew + '</p>';
