@@ -245,6 +245,8 @@ h2 [lang="he"] { color: var(--gold-deep); }
 .schedule-table tbody tr:nth-child(even) { background: var(--cream); }
 .schedule-table td:first-child { font-weight: 700; color: var(--navy); }
 .schedule-table td:last-child { color: var(--ink-soft); }
+.zman { display: block; margin-top: .35rem; color: var(--gold-deep); font-weight: 700; font-size: .82rem; letter-spacing: .01em; }
+.zman:empty { display: none; }
 
 /* ---------- CTA cards ---------- */
 .cta-card {

@@ -61,6 +61,21 @@
     html += '</div>';
 
     thisWeekEl.innerHTML = html;
+
+    // Fill the Shabbos schedule with this week's approximate clock times.
+    // shkiah (sunset) = candle lighting + 18 min (Hebcal is queried with b=18).
+    if (candles) {
+      var shkiah = new Date(new Date(candles.date).getTime() + 18 * 60000);
+      var addMin = function (base, m) { return new Date(base.getTime() + m * 60000); };
+      var round5 = function (d) { var ms = 5 * 60000; return new Date(Math.round(d.getTime() / ms) * ms); };
+      var setZman = function (id, when) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = '≈ ' + fmtTime(when.toISOString(), tzid) + ' this Shabbos';
+      };
+      setZman('zman-erev', round5(addMin(shkiah, -60)));
+      setZman('zman-mincha', addMin(shkiah, -35));
+      setZman('zman-maariv', addMin(shkiah, 60));
+    }
   }
 
   function renderFallback() {
