@@ -364,6 +364,9 @@ h2 [lang="he"] { color: var(--gold-deep); }
   .tw-grid { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery-cap { opacity: 1; transform: none; font-size: .85rem; padding: 1.1rem .7rem .55rem; }
+  /* Schedule table fits the viewport (no horizontal scroll / cut-off) on phones */
+  .schedule-table { min-width: 0; font-size: .9rem; }
+  .schedule-table th, .schedule-table td { padding: .7rem .75rem; }
 }
 @media (max-width: 520px) {
   .gallery { grid-template-columns: 1fr; }
