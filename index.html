@@ -29,6 +29,7 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav" id="siteNav">
+      <a href="#register" class="nav-cta">Register</a>
       <a href="#vision">Vision</a>
       <a href="#schedule">Schedule &amp; Luach</a>
       <a href="#shabbos-meals">Shabbos Meals</a>
@@ -76,6 +77,52 @@
           <p class="mission-statement">Welcome to our warm and vibrant Shul&mdash;a meaningful place for Shabbos davening. As our community grows, IY&rdquo;H, we look forward to expanding our mission with daily minyanim, engaging shiurim, and enhanced programming to serve every member of our kehilla.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="register" class="section section-gold">
+    <div class="section-inner narrow">
+      <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
+      <h2>High Holidays &mdash; Reserve Your Seats</h2>
+      <p class="lead"><strong>Seating is limited.</strong> Reserve your place for the Yamim Noraim below, and we&rsquo;ll follow up to confirm your seats with you directly.</p>
+      <form id="regForm" class="reg-form">
+        <div class="reg-field">
+          <label for="reg-name">Full name</label>
+          <input id="reg-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="reg-field">
+          <label for="reg-email">Email</label>
+          <input id="reg-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="reg-field">
+          <label for="reg-phone">Phone</label>
+          <input id="reg-phone" name="phone" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="reg-field">
+          <label for="reg-seats">Number of seats</label>
+          <input id="reg-seats" name="seats" type="number" min="1" step="1" value="1" required>
+        </div>
+        <div class="reg-field">
+          <span class="reg-legend">Which services? <span class="reg-note">(select all that apply)</span></span>
+          <div class="reg-services">
+            <label class="reg-check"><input type="checkbox" name="services" value="Rosh Hashanah – First Day"> Rosh Hashanah &ndash; First Day</label>
+            <label class="reg-check"><input type="checkbox" name="services" value="Rosh Hashanah – Second Day"> Rosh Hashanah &ndash; Second Day</label>
+            <label class="reg-check"><input type="checkbox" name="services" value="Yom Kippur – Kol Nidrei"> Yom Kippur &ndash; Kol Nidrei (evening)</label>
+            <label class="reg-check"><input type="checkbox" name="services" value="Yom Kippur – Day"> Yom Kippur &ndash; Day</label>
+          </div>
+        </div>
+        <div class="reg-field">
+          <label for="reg-party">Names of everyone in your party <span class="reg-note">(optional)</span></label>
+          <textarea id="reg-party" name="party" rows="3"></textarea>
+        </div>
+        <div class="reg-field">
+          <label for="reg-notes">Anything we should know? <span class="reg-note">(optional)</span></label>
+          <textarea id="reg-notes" name="notes" rows="2"></textarea>
+        </div>
+        <input type="text" name="_honey" class="reg-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit" class="btn btn-gold">Reserve my seats</button>
+        <p class="reg-status" id="regStatus" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -238,6 +285,6 @@
   <button class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">&#8250;</button>
 </div>
 
-<script src="js/main.js?v=2"></script>
+<script src="js/main.js?v=3"></script>
 </body>
 </html>

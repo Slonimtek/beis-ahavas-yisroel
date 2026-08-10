@@ -276,6 +276,40 @@ h2 [lang="he"] { color: var(--gold-deep); }
 .placeholder-card a { color: var(--gold-deep); font-weight: 700; }
 .placeholder-note { font-size: .92rem; }
 
+/* ---------- Highlighted nav CTA ---------- */
+.site-nav a.nav-cta {
+  color: var(--navy-900); background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  border-radius: 999px; padding: .4rem .95rem; font-weight: 800;
+}
+.site-nav a.nav-cta::after { display: none; }
+.site-nav a.nav-cta:hover, .site-nav a.nav-cta:focus-visible { color: var(--navy-900); filter: brightness(1.06); }
+
+/* ---------- Registration form ---------- */
+.reg-form { text-align: left; margin-top: 1.5rem; display: grid; gap: 1.1rem; }
+.reg-field { display: flex; flex-direction: column; gap: .4rem; }
+.reg-field > label, .reg-legend { font-weight: 700; color: var(--navy); font-size: .95rem; }
+.reg-note { font-weight: 400; color: var(--ink-soft); font-size: .85rem; }
+.reg-field input, .reg-field textarea {
+  font: inherit; padding: .7rem .85rem; border: 1px solid rgba(22,48,79,.22);
+  border-radius: var(--radius-sm); background: #fff; color: var(--ink); width: 100%;
+}
+.reg-field input:focus, .reg-field textarea:focus {
+  border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(201,162,77,.22);
+}
+.reg-field textarea { resize: vertical; }
+.reg-services {
+  border: 1px solid rgba(22,48,79,.15); border-radius: var(--radius-sm);
+  padding: .9rem 1rem; display: grid; gap: .55rem; background: #fff;
+}
+.reg-check { display: flex; align-items: center; gap: .6rem; font-weight: 500; color: var(--ink); cursor: pointer; }
+.reg-check input { width: auto; accent-color: var(--gold-deep); }
+.reg-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; }
+.reg-form .btn { justify-self: start; border: 0; cursor: pointer; }
+.reg-status { margin: .3rem 0 0; font-weight: 600; min-height: 1.2em; }
+.reg-status.ok { color: #1c7c4a; }
+.reg-status.err { color: #b02a2a; }
+.reg-status.sending { color: var(--ink-soft); }
+
 /* ---------- Photo gallery ---------- */
 .gallery {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: .6rem;
@@ -362,6 +396,7 @@ h2 [lang="he"] { color: var(--gold-deep); }
   .site-nav.open { max-height: 420px; }
   .site-nav a { padding: .95rem 1.4rem; border-top: 1px solid rgba(255,255,255,.06); }
   .site-nav a::after { display: none; }
+  .site-nav a.nav-cta { background: none; color: var(--gold-light); border-radius: 0; padding: .95rem 1.4rem; }
   .contact-grid { grid-template-columns: 1fr; }
   .tw-grid { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(2, 1fr); }

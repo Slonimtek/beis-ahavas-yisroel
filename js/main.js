@@ -139,4 +139,43 @@
       else if (e.key === 'ArrowLeft') show(current - 1);
     });
   }
+
+  // High Holidays registration form -> emailed to info@ via FormSubmit (free, no backend).
+  var regForm = document.getElementById('regForm');
+  if (regForm) {
+    var regStatus = document.getElementById('regStatus');
+    regForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var honey = regForm.querySelector('[name="_honey"]');
+      if (honey && honey.value) return; // bot trap
+      var btn = regForm.querySelector('button[type="submit"]');
+      var fd = new FormData(regForm);
+      var payload = {};
+      fd.forEach(function (v, k) { if (k !== 'services' && k !== '_honey') payload[k] = v; });
+      payload.services = fd.getAll('services').join(', ') || '(none selected)';
+      payload._subject = 'High Holidays seat request — ' + (payload.name || '');
+
+      regStatus.textContent = 'Sending…';
+      regStatus.className = 'reg-status sending';
+      btn.disabled = true;
+
+      fetch('https://formsubmit.co/ajax/info@beisahavasyisroel.org', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          regForm.reset();
+          regStatus.textContent = 'Thank you! Your request is in. Seats are limited, so we’ll be in touch soon to confirm your reservation.';
+          regStatus.className = 'reg-status ok';
+          btn.disabled = false;
+        })
+        .catch(function () {
+          regStatus.innerHTML = 'Sorry, something went wrong. Please email <a href="mailto:info@beisahavasyisroel.org">info@beisahavasyisroel.org</a> or call (347)&nbsp;528-0755.';
+          regStatus.className = 'reg-status err';
+          btn.disabled = false;
+        });
+    });
+  }
 })();
