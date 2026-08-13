@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Bulletin · Beis Ahavas Yisroel</title>
+<meta name="description" content="This week's bulletin — davening times and announcements for Beis Ahavas Yisroel, Dallas.">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/bulletin.css">
+<style>
+  body { margin: 0; background: #f4eee1; font-family: "Assistant", system-ui, sans-serif; }
+  .bl-bar { background: #16304f; color: #fff; padding: .8rem 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .bl-bar a { color: #e2c37a; text-decoration: none; font-weight: 700; }
+  .bl-bar .title { font-weight: 700; }
+  .bl-print { background: linear-gradient(180deg,#e2c37a,#c19a45); color: #0f2138; border: 0; font-weight: 800; padding: .6rem 1.3rem; border-radius: 999px; cursor: pointer; font-size: .95rem; }
+  .bl-wrap { padding: 1.4rem 1rem 3rem; }
+  .bl-updated { text-align: center; color: #6b6152; font-size: .85rem; margin: 0 0 1rem; }
+</style>
+</head>
+<body>
+  <div class="bl-bar no-print">
+    <a href="/">&larr; Back to site</a>
+    <span class="title">Weekly Bulletin</span>
+    <button class="bl-print" id="printBtn">Download / Print (PDF)</button>
+  </div>
+  <div class="bl-wrap">
+    <p class="bl-updated no-print" id="updated"></p>
+    <div class="bulletin-page" id="sheet"><div class="bl-empty">Loading this week’s bulletin…</div></div>
+  </div>
+
+  <script src="js/bulletin-render.js"></script>
+  <script>
+    (function () {
+      var sheet = document.getElementById('sheet');
+      fetch('/api/bulletin', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d || !d.times) {
+            sheet.innerHTML = '<div class="bl-empty">No bulletin has been published yet.<br>Please check back before Shabbos.</div>';
+            return;
+          }
+          sheet.innerHTML = window.renderBulletin(d);
+          if (d.updatedAt) {
+            var u = document.getElementById('updated');
+            try { u.textContent = 'Last updated ' + new Date(d.updatedAt).toLocaleString('en-US'); } catch (e) {}
+          }
+        })
+        .catch(function () {
+          sheet.innerHTML = '<div class="bl-empty">Couldn’t load the bulletin right now. Please try again shortly.</div>';
+        });
+      document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+    })();
+  </script>
+</body>
+</html>

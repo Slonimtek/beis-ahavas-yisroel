@@ -1,0 +1,42 @@
+/* Beis Ahavas Yisroel — weekly bulletin (print-accurate, US Letter) */
+:root { --bl-navy:#16304f; --bl-gold:#b8873a; --bl-red:#c0161c; }
+
+.bulletin-page {
+  width: 8.5in; max-width: 100%; min-height: 10.6in; margin: 0 auto; background: #fff; color: #111;
+  padding: 0.45in 0.5in; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 12px 45px rgba(0,0,0,.16);
+}
+.bl-header { text-align: center; }
+.bl-emblem { width: 58px; height: 58px; display: inline-block; }
+.bl-shulname-he { font-family: "Frank Ruhl Libre", Georgia, serif; font-weight: 700; font-size: 26px; color: var(--bl-navy); line-height: 1.1; margin-top: 2px; }
+.bl-shulname-en { font-family: "Frank Ruhl Libre", Georgia, serif; font-weight: 700; font-size: 20px; color: var(--bl-gold); letter-spacing: .06em; }
+.bl-address { font-size: 10.5px; font-weight: bold; line-height: 1.35; margin-top: 4px; }
+.bl-title { border: 2px solid #111; text-align: center; padding: 9px 8px; margin: 10px 0; }
+.bl-title h2 { margin: 2px 0; font-size: 19px; font-weight: bold; letter-spacing: .01em; }
+.bl-title [lang="he"] { font-family: "Frank Ruhl Libre", Georgia, serif; }
+.bl-main { border: 2px solid #111; display: grid; grid-template-columns: 1fr 1fr; }
+.bl-col { padding: 12px 15px; }
+.bl-col + .bl-col { border-left: 2px solid #111; }
+.bl-colhead { text-align: center; font-weight: bold; text-decoration: underline; font-size: 14px; letter-spacing: .04em; margin-bottom: 8px; }
+.bl-daysec { font-weight: bold; text-decoration: underline; margin: 9px 0 5px; font-size: 13px; }
+.bl-row { display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; margin: 5px 0; align-items: baseline; }
+.bl-row .t { font-weight: bold; white-space: nowrap; }
+.bl-row.red .l, .bl-row.red .t { color: var(--bl-red); }
+.bl-sub { font-size: 10px; color: #333; margin: -1px 0 5px; }
+.bl-ann { font-size: 12px; margin: 0; padding: 0; }
+.bl-ann li { margin: 7px 0; list-style: none; line-height: 1.35; }
+.bl-ann li::before { content: "\2605\00a0"; color: var(--bl-navy); }
+.bl-spon { margin-top: 14px; text-align: center; }
+.bl-spon .h { font-weight: bold; text-decoration: underline; font-size: 12.5px; }
+.bl-spon .v { font-weight: bold; margin: 5px 0 4px; font-size: 12.5px; }
+.bl-sponcontact { font-size: 10px; text-align: center; margin-top: 12px; color: #333; }
+.bl-footer { text-align: center; font-weight: 700; font-size: 21px; margin-top: 12px; font-family: "Frank Ruhl Libre", Georgia, serif; }
+.bl-footer [lang="he"] { color: var(--bl-navy); }
+.bl-empty { text-align: center; color: #555; padding: 2in 1in; font-size: 15px; }
+
+@media print {
+  @page { size: letter; margin: 0.35in; }
+  html, body { background: #fff !important; }
+  .no-print { display: none !important; }
+  .bulletin-page { box-shadow: none; margin: 0 auto; width: 100%; min-height: auto; padding: 0; }
+}
