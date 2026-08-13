@@ -146,7 +146,7 @@
     }
     function render() { document.getElementById('preview').innerHTML = window.renderBulletin(collect()); }
 
-    function fmt(dt) { return dt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ }); }
+    function fmt(dt) { return dt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ }).replace(/\s?[AP]M$/i, ''); }
     function autofill() {
       setStatus('Fetching this week’s zmanim…', 'busy');
       fetch('https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEO + '&M=on&b=18')
