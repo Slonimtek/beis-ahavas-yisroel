@@ -5,20 +5,57 @@
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
-  function row(label, time, red, sub) {
-    if (!time && !sub) return '';
-    return '<div class="bl-row' + (red ? ' red' : '') + '"><span class="l">' + esc(label) +
-      '</span><span class="t">' + esc(time) + '</span></div>' +
-      (sub ? '<div class="bl-sub">' + esc(sub) + '</div>' : '');
+  function ml(s) { return esc(s).replace(/\n/g, '<br>'); } // multi-line -> <br>
+
+  function timeRow(r) {
+    if (!r || (!r.time && !r.sub && !r.label)) return '';
+    return '<div class="bl-row' + (r.red ? ' red' : '') + '"><span class="l">' + esc(r.label) +
+      '</span><span class="t">' + esc(r.time) + '</span></div>' +
+      (r.sub ? '<div class="bl-sub">' + esc(r.sub) + '</div>' : '');
   }
+  function renderRows(rows) {
+    return (rows || []).map(function (r) {
+      if (r.type === 'section') return '<div class="bl-daysec">' + esc(r.label) + '</div>';
+      return timeRow(r);
+    }).join('');
+  }
+
+  // Back-compat: turn an old fixed { times:{...} } object into a rows array.
+  function rowsFromTimes(t) {
+    t = t || {};
+    var out = [{ type: 'section', label: 'Friday' }];
+    if (t.earliestCandle) out.push({ type: 'time', label: 'Earliest Candle Lighting', time: t.earliestCandle, red: true });
+    if (t.lchaim) out.push({ type: 'time', label: 'L’Chaim', time: t.lchaim, red: true });
+    if (t.candle) out.push({ type: 'time', label: 'Candle Lighting', time: t.candle });
+    if (t.kabbalas) out.push({ type: 'time', label: 'Mincha / Kabbalas Shabbos / Maariv', time: t.kabbalas, red: true });
+    out.push({ type: 'section', label: 'Shabbos' });
+    if (t.shacharis) out.push({ type: 'time', label: 'Shacharis: Hodu', time: t.shacharis });
+    if (t.shochenAd) out.push({ type: 'time', label: 'Shochen Ad', time: t.shochenAd });
+    if (t.learners) out.push({ type: 'time', label: 'Learners Service', time: t.learners });
+    if (t.kiddush) out.push({ type: 'time', label: 'Kiddush', time: t.kiddush });
+    if (t.mincha) out.push({ type: 'time', label: 'Mincha', time: t.mincha, red: true, sub: 'Followed By Seuda Shlishit' });
+    if (t.shabbosEnds) out.push({ type: 'time', label: 'Shabbos Ends', time: t.shabbosEnds, sub: 'Say “Baruch Hamavdil” if driving back for Maariv' });
+    if (t.maariv) out.push({ type: 'time', label: 'Maariv', time: t.maariv, red: true });
+    return out;
+  }
+
   window.renderBulletin = function (d) {
     d = d || {};
-    var t = d.times || {};
+    var rows = (d.rows && d.rows.length) ? d.rows : rowsFromTimes(d.times);
     var ann = (d.announcements || []).filter(function (a) { return a && a.trim(); })
       .map(function (a) { return '<li>' + esc(a) + '</li>'; }).join('');
     var titleHe = d.parshaHe ? ' / <span dir="rtl" lang="he">' + esc(d.parshaHe) + '</span>' : '';
-    var mev = d.mevorchim
-      ? '<h2>SHABBOS MEVORCHIM / <span dir="rtl" lang="he">מברכים</span></h2>' : '';
+    var mev = d.mevorchim ? '<h2>SHABBOS MEVORCHIM / <span dir="rtl" lang="he">מברכים</span></h2>' : '';
+
+    var right = '<div class="bl-colhead">ANNOUNCEMENTS</div><ul class="bl-ann">' + ann + '</ul>';
+    if (d.mazelTov && d.mazelTov.trim())
+      right += '<div class="bl-spon"><div class="h">MAZEL TOV:</div><div class="v">' + ml(d.mazelTov) + '</div></div>';
+    if (d.kiddushSponsor && d.kiddushSponsor.trim())
+      right += '<div class="bl-spon"><div class="h">KIDDUSH IS SPONSORED BY:</div><div class="v">' + ml(d.kiddushSponsor) + '</div></div>';
+    if (d.seudaSponsor && d.seudaSponsor.trim())
+      right += '<div class="bl-spon"><div class="h">SEUDA SHLISHIT IS SPONSORED BY:</div><div class="v">' + ml(d.seudaSponsor) + '</div></div>';
+    if (d.sponsorContact && d.sponsorContact.trim())
+      right += '<div class="bl-sponcontact">For sponsorships, please contact ' + esc(d.sponsorContact) + '</div>';
 
     return [
       '<div class="bl-header">',
@@ -30,29 +67,8 @@
       '</div>',
       '<div class="bl-title"><h2>SHABBOS PARSHAS ' + esc(d.parshaEn || '') + titleHe + '</h2>' + mev + '</div>',
       '<div class="bl-main">',
-      '<div class="bl-col">',
-      '<div class="bl-colhead">DAVENING TIMES</div>',
-      '<div class="bl-daysec">Friday</div>',
-      row('Earliest Candle Lighting', t.earliestCandle, true),
-      row('L’Chaim', t.lchaim, true),
-      row('Candle Lighting', t.candle, false),
-      row('Mincha / Kabbalas Shabbos / Maariv', t.kabbalas, true),
-      '<div class="bl-daysec">Shabbos</div>',
-      row('Shacharis: Hodu', t.shacharis, false),
-      row('Shochen Ad', t.shochenAd, false),
-      row('Learners Service', t.learners, false),
-      row('Kiddush', t.kiddush, false),
-      row('Mincha', t.mincha, true, 'Followed By Seuda Shlishit'),
-      row('Shabbos Ends', t.shabbosEnds, false, 'Say “Baruch Hamavdil” if driving back for Maariv'),
-      row('Maariv', t.maariv, true),
-      '</div>',
-      '<div class="bl-col">',
-      '<div class="bl-colhead">ANNOUNCEMENTS</div>',
-      '<ul class="bl-ann">' + ann + '</ul>',
-      (d.kiddushSponsor ? '<div class="bl-spon"><div class="h">KIDDUSH IS SPONSORED BY:</div><div class="v">' + esc(d.kiddushSponsor) + '</div></div>' : ''),
-      (d.seudaSponsor ? '<div class="bl-spon"><div class="h">SEUDA SHLISHIT IS SPONSORED BY:</div><div class="v">' + esc(d.seudaSponsor) + '</div></div>' : ''),
-      (d.sponsorContact ? '<div class="bl-sponcontact">For sponsorships, please contact ' + esc(d.sponsorContact) + '</div>' : ''),
-      '</div>',
+      '<div class="bl-col"><div class="bl-colhead">DAVENING TIMES</div>' + renderRows(rows) + '</div>',
+      '<div class="bl-col">' + right + '</div>',
       '</div>',
       '<div class="bl-footer">Have A Wonderful Shabbos! <span dir="rtl" lang="he">שבת שלום</span></div>'
     ].join('');

@@ -17,27 +17,39 @@
   header { background: var(--navy); color: #fff; padding: .8rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
   header a { color: var(--gold-l); text-decoration: none; font-weight: 700; }
   header .t { font-weight: 700; font-size: 1.05rem; }
-  .layout { display: grid; grid-template-columns: 420px 1fr; gap: 1.2rem; padding: 1.2rem; align-items: start; }
-  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+  .layout { display: grid; grid-template-columns: 460px 1fr; gap: 1.2rem; padding: 1.2rem; align-items: start; }
+  @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
   .panel { background: #fff; border: 1px solid #dcd7c9; border-radius: 12px; padding: 1.1rem 1.2rem; }
-  .panel h2 { font-size: 1rem; margin: .2rem 0 .8rem; color: var(--navy); }
   .fld { display: flex; flex-direction: column; gap: .25rem; margin-bottom: .7rem; }
   .fld label { font-weight: 700; font-size: .82rem; }
   .fld input, .fld textarea { font: inherit; padding: .5rem .6rem; border: 1px solid #c9cdd4; border-radius: 8px; }
-  .fld input:focus, .fld textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(193,154,69,.2); }
+  .fld input:focus, .fld textarea:focus, .rowedit input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(193,154,69,.2); }
   .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .8rem; }
   .row-inline { display: flex; align-items: center; gap: .5rem; margin: .3rem 0 .8rem; font-weight: 700; font-size: .85rem; }
-  .sec { border-top: 1px solid #e6e2d6; margin-top: .8rem; padding-top: .8rem; }
+  .sec { border-top: 1px solid #e6e2d6; margin-top: .9rem; padding-top: .8rem; }
   .sec .h { font-weight: 800; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin-bottom: .5rem; }
-  .btn { border: 0; border-radius: 999px; font-weight: 800; padding: .6rem 1.1rem; cursor: pointer; font-size: .9rem; }
+  .btn { border: 0; border-radius: 999px; font-weight: 800; padding: .55rem 1rem; cursor: pointer; font-size: .88rem; }
   .btn-gold { background: linear-gradient(180deg,var(--gold-l),var(--gold)); color: #0f2138; }
   .btn-ghost { background: #eef0f3; color: var(--navy); border: 1px solid #c9cdd4; }
-  .btnbar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .8rem; }
+  .btn-sm { padding: .3rem .55rem; font-size: .8rem; border-radius: 7px; border: 1px solid #c9cdd4; background: #fff; cursor: pointer; }
+  .btnbar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .6rem; }
   .publishbar { display: flex; gap: .5rem; align-items: end; flex-wrap: wrap; margin-top: 1rem; }
   .status { font-weight: 700; margin: .6rem 0 0; min-height: 1.2em; font-size: .9rem; }
   .status.ok { color: #1c7c4a; } .status.err { color: #b02a2a; } .status.busy { color: #6b6152; }
-  .previewwrap { background: #f4eee1; border-radius: 12px; padding: 1rem; overflow: auto; }
+  .previewwrap { background: #f4eee1; border-radius: 12px; padding: 1rem; overflow: auto; position: sticky; top: 1rem; }
   .hint { font-size: .78rem; color: #6b6152; margin: .1rem 0 .6rem; }
+  /* dynamic rows editor */
+  #rowsList { display: flex; flex-direction: column; gap: .4rem; }
+  .rowedit { display: grid; grid-template-columns: 1fr 74px auto; grid-template-areas: "label time ops" "sub sub ops"; gap: .3rem .4rem; align-items: center; background: #f7f8fa; border: 1px solid #e2e4e8; border-radius: 9px; padding: .45rem .5rem; }
+  .rowedit .r-label { grid-area: label; } .rowedit .r-time { grid-area: time; text-align: center; }
+  .rowedit .r-sub { grid-area: sub; font-size: .82rem; }
+  .rowedit .r-ops { grid-area: ops; display: flex; flex-direction: column; gap: .2rem; }
+  .rowedit input[type=text] { font: inherit; padding: .35rem .5rem; border: 1px solid #c9cdd4; border-radius: 6px; width: 100%; }
+  .rowedit .r-red { grid-area: sub; justify-self: end; align-self: center; font-size: .78rem; font-weight: 700; display: flex; align-items: center; gap: .25rem; white-space: nowrap; }
+  .rowedit.section { grid-template-columns: auto 1fr auto; grid-template-areas: "tag label ops"; background: #eef2f6; }
+  .rowedit .sectag { grid-area: tag; font-size: .68rem; font-weight: 800; text-transform: uppercase; color: var(--navy); background: #dbe4ee; padding: .2rem .4rem; border-radius: 5px; }
+  .rowedit.section .r-label { grid-area: label; font-weight: 700; }
+  .addbar { display: flex; gap: .5rem; margin-top: .5rem; }
 </style>
 </head>
 <body>
@@ -53,45 +65,36 @@
         <button class="btn btn-ghost" id="autoBtn" type="button">↻ Auto-fill from Hebcal</button>
         <button class="btn btn-ghost" id="loadBtn" type="button">Load published</button>
       </div>
-      <p class="hint">Auto-fill pulls this week’s parsha, candle-lighting &amp; havdalah for Dallas and computes the shkiah-based times. You can edit anything below.</p>
+      <p class="hint">Auto-fill sets this shul’s standard rows with this week’s parsha &amp; computed times. Edit any label/time, tick “red”, add notes, or add/remove/reorder rows freely.</p>
 
       <div class="grid2">
-        <div class="fld"><label>Parsha (English)</label><input id="parshaEn" placeholder="Re’eh"></div>
-        <div class="fld"><label>Parsha (Hebrew)</label><input id="parshaHe" dir="rtl" placeholder="ראה"></div>
+        <div class="fld"><label>Parsha (English)</label><input id="parshaEn" placeholder="Shoftim"></div>
+        <div class="fld"><label>Parsha (Hebrew)</label><input id="parshaHe" dir="rtl" placeholder="שופטים"></div>
       </div>
       <label class="row-inline"><input type="checkbox" id="mevorchim"> Shabbos Mevorchim</label>
 
-      <div class="sec"><div class="h">Friday</div>
-        <div class="grid2">
-          <div class="fld"><label>Earliest Candle Lighting</label><input id="earliestCandle" placeholder="6:55"></div>
-          <div class="fld"><label>L’Chaim</label><input id="lchaim" placeholder="7:05"></div>
-          <div class="fld"><label>Candle Lighting</label><input id="candle" placeholder="8:02"></div>
-          <div class="fld"><label>Mincha / Kabbalas Shabbos</label><input id="kabbalas" placeholder="7:25"></div>
-        </div>
-      </div>
-
-      <div class="sec"><div class="h">Shabbos</div>
-        <div class="grid2">
-          <div class="fld"><label>Shacharis: Hodu</label><input id="shacharis" placeholder="9:30"></div>
-          <div class="fld"><label>Shochen Ad</label><input id="shochenAd" placeholder="9:55"></div>
-          <div class="fld"><label>Learners Service</label><input id="learners" placeholder="10:30"></div>
-          <div class="fld"><label>Kiddush</label><input id="kiddush" placeholder="11:30"></div>
-          <div class="fld"><label>Mincha</label><input id="mincha" placeholder="7:45"></div>
-          <div class="fld"><label>Shabbos Ends</label><input id="shabbosEnds" placeholder="9:05"></div>
-          <div class="fld"><label>Maariv</label><input id="maariv" placeholder="9:20"></div>
+      <div class="sec"><div class="h">Davening Times</div>
+        <div id="rowsList"></div>
+        <div class="addbar">
+          <button class="btn-sm" id="addTime" type="button">+ Time row</button>
+          <button class="btn-sm" id="addSection" type="button">+ Section header</button>
         </div>
       </div>
 
       <div class="sec"><div class="h">Announcements</div>
         <div class="fld"><label>One announcement per line</label>
-          <textarea id="announcements" rows="6" placeholder="Latest time to say Shema is 10:09.&#10;Rosh Chodesh Elul is observed this week."></textarea>
+          <textarea id="announcements" rows="5" placeholder="Latest time to say Shema is 10:10 — please say before davening."></textarea>
         </div>
       </div>
 
-      <div class="sec"><div class="h">Sponsors</div>
-        <div class="fld"><label>Kiddush sponsored by</label><input id="kiddushSponsor" placeholder="The Shul"></div>
-        <div class="fld"><label>Seuda Shlishit sponsored by</label><input id="seudaSponsor" placeholder="The Shul"></div>
-        <div class="fld"><label>Sponsorship contact</label><input id="sponsorContact" placeholder="Reb Nick Taussig @ (347) 528-0755"></div>
+      <div class="sec"><div class="h">Mazel Tov <span class="hint" style="text-transform:none;letter-spacing:0;">(optional — one simcha per block, blank line between)</span></div>
+        <div class="fld"><textarea id="mazelTov" rows="4" placeholder="Shani &amp; AB Blumberg on the birth of a baby girl"></textarea></div>
+      </div>
+
+      <div class="sec"><div class="h">Sponsors (multi-line OK)</div>
+        <div class="fld"><label>Kiddush sponsored by</label><textarea id="kiddushSponsor" rows="2" placeholder="Rose Futterman&#10;for the yahrzeit of her brother"></textarea></div>
+        <div class="fld"><label>Seuda Shlishit sponsored by</label><textarea id="seudaSponsor" rows="2" placeholder="The Shul"></textarea></div>
+        <div class="fld"><label>Sponsorship contact</label><input id="sponsorContact" placeholder="Reb Nick @ (347) 528-0755"></div>
       </div>
 
       <div class="sec"><div class="h">Publish</div>
@@ -113,40 +116,93 @@
   <script>
   (function () {
     var TZ = 'America/Chicago', GEO = 4684888;
-    var fields = ['parshaEn','parshaHe','earliestCandle','lchaim','candle','kabbalas','shacharis','shochenAd','learners','kiddush','mincha','shabbosEnds','maariv','announcements','kiddushSponsor','seudaSponsor','sponsorContact'];
     var el = {};
-    fields.concat(['mevorchim','password','status']).forEach(function (id) { el[id] = document.getElementById(id); });
+    ['parshaEn','parshaHe','mevorchim','announcements','mazelTov','kiddushSponsor','seudaSponsor','sponsorContact','password','status'].forEach(function (id) { el[id] = document.getElementById(id); });
+    var rowsData = [];
 
-    // sensible fixed defaults
-    var defaults = { shacharis:'9:30', shochenAd:'9:55', learners:'10:30', kiddush:'11:30', kiddushSponsor:'The Shul', seudaSponsor:'The Shul', sponsorContact:'(347) 528-0755' };
-    Object.keys(defaults).forEach(function (k) { if (el[k] && !el[k].value) el[k].value = defaults[k]; });
+    function standardRows(t) {
+      t = t || {};
+      return [
+        { type: 'section', label: 'Friday' },
+        { type: 'time', label: 'Earliest Candle Lighting', time: t.earliest || '', red: false, sub: '' },
+        { type: 'time', label: 'Candle Lighting', time: t.candle || '', red: false, sub: '' },
+        { type: 'time', label: 'Mincha / Kabbalas Shabbos / Maariv', time: t.kabbalas || '', red: false, sub: '' },
+        { type: 'section', label: 'Shabbos' },
+        { type: 'time', label: 'Shacharis', time: '9:15', red: true, sub: '' },
+        { type: 'time', label: 'Learners Service', time: '10:30', red: false, sub: 'Also held at 6031 Prestoncrest' },
+        { type: 'time', label: 'Kiddush', time: '11:30', red: false, sub: '' },
+        { type: 'time', label: 'Mincha', time: t.mincha || '', red: false, sub: 'Followed By Seuda Shlishit' },
+        { type: 'time', label: 'Shabbos Ends', time: t.shabbosEnds || '', red: false, sub: 'Say “Baruch Hamavdil” if driving back for Maariv' },
+        { type: 'time', label: 'Maariv', time: t.maariv || '', red: false, sub: '' },
+        { type: 'time', label: 'End Of Shabbos (Rabbeinu Tam)', time: t.rt || '', red: false, sub: '' }
+      ];
+    }
+
+    function preview() { document.getElementById('preview').innerHTML = window.renderBulletin(collect()); }
 
     function collect() {
       return {
         parshaEn: el.parshaEn.value, parshaHe: el.parshaHe.value, mevorchim: el.mevorchim.checked,
-        times: {
-          earliestCandle: el.earliestCandle.value, lchaim: el.lchaim.value, candle: el.candle.value, kabbalas: el.kabbalas.value,
-          shacharis: el.shacharis.value, shochenAd: el.shochenAd.value, learners: el.learners.value, kiddush: el.kiddush.value,
-          mincha: el.mincha.value, shabbosEnds: el.shabbosEnds.value, maariv: el.maariv.value
-        },
+        rows: rowsData.map(function (r) { return { type: r.type, label: r.label, time: r.time || '', red: !!r.red, sub: r.sub || '' }; }),
         announcements: el.announcements.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean),
+        mazelTov: el.mazelTov.value,
         kiddushSponsor: el.kiddushSponsor.value, seudaSponsor: el.seudaSponsor.value, sponsorContact: el.sponsorContact.value
       };
     }
+
+    function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function renderRowsUI() {
+      var html = rowsData.map(function (r, i) {
+        if (r.type === 'section') {
+          return '<div class="rowedit section" data-idx="' + i + '"><span class="sectag">Section</span>' +
+            '<input type="text" class="r-label" data-idx="' + i + '" data-field="label" value="' + esc(r.label) + '">' +
+            '<span class="r-ops"><button class="btn-sm" data-op="up" data-idx="' + i + '">↑</button><button class="btn-sm" data-op="down" data-idx="' + i + '">↓</button><button class="btn-sm" data-op="del" data-idx="' + i + '">✕</button></span></div>';
+        }
+        return '<div class="rowedit" data-idx="' + i + '">' +
+          '<input type="text" class="r-label" data-idx="' + i + '" data-field="label" value="' + esc(r.label) + '" placeholder="Label">' +
+          '<input type="text" class="r-time" data-idx="' + i + '" data-field="time" value="' + esc(r.time) + '" placeholder="7:55">' +
+          '<span class="r-ops"><button class="btn-sm" data-op="up" data-idx="' + i + '">↑</button><button class="btn-sm" data-op="down" data-idx="' + i + '">↓</button><button class="btn-sm" data-op="del" data-idx="' + i + '">✕</button></span>' +
+          '<input type="text" class="r-sub" data-idx="' + i + '" data-field="sub" value="' + esc(r.sub) + '" placeholder="note (optional)">' +
+          '<label class="r-red"><input type="checkbox" data-idx="' + i + '" data-field="red"' + (r.red ? ' checked' : '') + '> red</label>' +
+          '</div>';
+      }).join('');
+      document.getElementById('rowsList').innerHTML = html;
+    }
+
+    // input edits update rowsData in place (no rebuild -> keeps focus)
+    document.getElementById('rowsList').addEventListener('input', function (e) {
+      var t = e.target, idx = t.getAttribute('data-idx'), f = t.getAttribute('data-field');
+      if (idx == null || !f) return;
+      rowsData[+idx][f] = (f === 'red') ? t.checked : t.value;
+      preview();
+    });
+    document.getElementById('rowsList').addEventListener('change', function (e) {
+      if (e.target.getAttribute('data-field') === 'red') { rowsData[+e.target.getAttribute('data-idx')].red = e.target.checked; preview(); }
+    });
+    document.getElementById('rowsList').addEventListener('click', function (e) {
+      var op = e.target.getAttribute('data-op'); if (!op) return;
+      var i = +e.target.getAttribute('data-idx');
+      if (op === 'del') rowsData.splice(i, 1);
+      else if (op === 'up' && i > 0) { var a = rowsData[i]; rowsData[i] = rowsData[i - 1]; rowsData[i - 1] = a; }
+      else if (op === 'down' && i < rowsData.length - 1) { var b = rowsData[i]; rowsData[i] = rowsData[i + 1]; rowsData[i + 1] = b; }
+      renderRowsUI(); preview();
+    });
+    document.getElementById('addTime').addEventListener('click', function () { rowsData.push({ type: 'time', label: '', time: '', red: false, sub: '' }); renderRowsUI(); preview(); });
+    document.getElementById('addSection').addEventListener('click', function () { rowsData.push({ type: 'section', label: 'Shabbos' }); renderRowsUI(); preview(); });
+
     function fill(d) {
       if (!d) return;
-      var t = d.times || {};
       el.parshaEn.value = d.parshaEn || ''; el.parshaHe.value = d.parshaHe || ''; el.mevorchim.checked = !!d.mevorchim;
-      ['earliestCandle','lchaim','candle','kabbalas','shacharis','shochenAd','learners','kiddush','mincha','shabbosEnds','maariv'].forEach(function (k) { if (t[k] != null) el[k].value = t[k]; });
-      if (d.announcements) el.announcements.value = d.announcements.join('\n');
-      if (d.kiddushSponsor != null) el.kiddushSponsor.value = d.kiddushSponsor;
-      if (d.seudaSponsor != null) el.seudaSponsor.value = d.seudaSponsor;
-      if (d.sponsorContact != null) el.sponsorContact.value = d.sponsorContact;
-      render();
+      if (d.rows && d.rows.length) rowsData = d.rows.map(function (r) { return { type: r.type, label: r.label, time: r.time || '', red: !!r.red, sub: r.sub || '' }; });
+      else if (d.times) rowsData = standardRows(d.times);
+      el.announcements.value = (d.announcements || []).join('\n');
+      el.mazelTov.value = d.mazelTov || '';
+      el.kiddushSponsor.value = d.kiddushSponsor || ''; el.seudaSponsor.value = d.seudaSponsor || ''; el.sponsorContact.value = d.sponsorContact || '';
+      renderRowsUI(); preview();
     }
-    function render() { document.getElementById('preview').innerHTML = window.renderBulletin(collect()); }
 
     function fmt(dt) { return dt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: TZ }).replace(/\s?[AP]M$/i, ''); }
+    function round5(d) { return new Date(Math.round(d.getTime() / 300000) * 300000); }
     function autofill() {
       setStatus('Fetching this week’s zmanim…', 'busy');
       fetch('https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEO + '&M=on&b=18')
@@ -156,33 +212,28 @@
           var parsha = items.find(function (i) { return i.category === 'parashat'; });
           var candles = items.find(function (i) { return i.category === 'candles'; });
           var havd = items.find(function (i) { return i.category === 'havdalah'; });
-          if (parsha) {
-            el.parshaEn.value = (parsha.title || '').replace(/^Parashat\s+/, '');
-            if (parsha.hebrew) el.parshaHe.value = parsha.hebrew.replace(/^פרשת\s+/, '');
-          }
+          if (parsha) { el.parshaEn.value = (parsha.title || '').replace(/^Parashat\s+/, ''); if (parsha.hebrew) el.parshaHe.value = parsha.hebrew.replace(/^פרשת\s+/, ''); }
+          var t = {};
           if (candles) {
-            var cd = new Date(candles.date);
-            el.candle.value = fmt(cd);
-            var shkiah = new Date(cd.getTime() + 18 * 60000);
-            var round5 = function (d) { return new Date(Math.round(d.getTime() / 300000) * 300000); };
-            el.kabbalas.value = fmt(round5(new Date(shkiah.getTime() - 60 * 60000)));
-            el.mincha.value = fmt(new Date(shkiah.getTime() - 35 * 60000));
-            el.maariv.value = fmt(new Date(shkiah.getTime() + 60 * 60000));
+            var cd = new Date(candles.date); t.candle = fmt(cd);
+            var sh = new Date(cd.getTime() + 18 * 60000);
+            t.kabbalas = fmt(round5(new Date(sh.getTime() - 60 * 60000)));
+            t.mincha = fmt(round5(new Date(sh.getTime() - 35 * 60000)));
+            t.maariv = fmt(new Date(sh.getTime() + 60 * 60000));
+            t.rt = fmt(new Date(sh.getTime() + 72 * 60000));
           }
-          if (havd) el.shabbosEnds.value = fmt(new Date(havd.date));
-          Object.keys(defaults).forEach(function (k) { if (el[k] && !el[k].value) el[k].value = defaults[k]; });
-          render();
-          setStatus('Auto-filled. Review the times, add announcements, then publish.', 'ok');
+          if (havd) t.shabbosEnds = fmt(new Date(havd.date));
+          rowsData = standardRows(t); renderRowsUI(); preview();
+          setStatus('Auto-filled. Adjust times/labels, add announcements, then publish.', 'ok');
         })
         .catch(function () { setStatus('Couldn’t reach Hebcal — enter the times manually.', 'err'); });
     }
-
     function setStatus(msg, cls) { el.status.textContent = msg; el.status.className = 'status ' + (cls || ''); }
 
     function loadPublished() {
       setStatus('Loading published bulletin…', 'busy');
       fetch('/api/bulletin', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-        if (d && d.times) { fill(d); setStatus('Loaded the current published bulletin.', 'ok'); }
+        if (d && (d.rows || d.times)) { fill(d); setStatus('Loaded the current published bulletin.', 'ok'); }
         else setStatus('No bulletin published yet — start with Auto-fill.', 'busy');
       }).catch(function () { setStatus('Couldn’t load.', 'err'); });
     }
@@ -190,12 +241,9 @@
     function publish() {
       var pw = el.password.value;
       if (!pw) { setStatus('Enter the admin password to publish.', 'err'); return; }
-      setStatus('Publishing…', 'busy');
-      document.getElementById('publishBtn').disabled = true;
-      fetch('/api/bulletin', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: pw, bulletin: collect() })
-      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      setStatus('Publishing…', 'busy'); document.getElementById('publishBtn').disabled = true;
+      fetch('/api/bulletin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw, bulletin: collect() }) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
         .then(function (res) {
           document.getElementById('publishBtn').disabled = false;
           if (res.ok && res.j.ok) setStatus('✓ Published! It’s now live at /bulletin for everyone.', 'ok');
@@ -204,16 +252,16 @@
         .catch(function () { document.getElementById('publishBtn').disabled = false; setStatus('Network error — try again.', 'err'); });
     }
 
-    fields.forEach(function (id) { el[id].addEventListener('input', render); });
-    el.mevorchim.addEventListener('change', render);
+    ['parshaEn','parshaHe','announcements','mazelTov','kiddushSponsor','seudaSponsor','sponsorContact'].forEach(function (id) { el[id].addEventListener('input', preview); });
+    el.mevorchim.addEventListener('change', preview);
     document.getElementById('autoBtn').addEventListener('click', autofill);
     document.getElementById('loadBtn').addEventListener('click', loadPublished);
     document.getElementById('publishBtn').addEventListener('click', publish);
 
-    // Start from the published bulletin if one exists; otherwise render defaults.
+    rowsData = standardRows({});
     fetch('/api/bulletin', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
-      if (d && d.times) fill(d); else render();
-    }).catch(render);
+      if (d && (d.rows || d.times)) fill(d); else { renderRowsUI(); preview(); }
+    }).catch(function () { renderRowsUI(); preview(); });
   })();
   </script>
 </body>
