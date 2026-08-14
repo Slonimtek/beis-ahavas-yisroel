@@ -99,7 +99,12 @@
 
       <div class="sec"><div class="h">Publish</div>
         <div class="publishbar">
-          <div class="fld" style="flex:1; min-width:180px;"><label>Admin password</label><input id="password" type="password" placeholder="admin password"></div>
+          <div class="fld" style="flex:1; min-width:180px;"><label>Admin password</label>
+            <div style="position:relative;">
+              <input id="password" type="password" placeholder="admin password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" style="width:100%; padding-right:3.6rem;">
+              <button type="button" id="pwToggle" class="btn-sm" style="position:absolute; right:.3rem; top:50%; transform:translateY(-50%);">Show</button>
+            </div>
+          </div>
           <button class="btn btn-gold" id="publishBtn" type="button">Publish to site</button>
         </div>
         <p class="hint">Publishing makes this the live bulletin visitors see and can download. Only you (with the password) can publish.</p>
@@ -232,7 +237,7 @@
 
     function loadPublished() {
       setStatus('Loading published bulletin…', 'busy');
-      fetch('/api/bulletin', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+      fetch('/api/bulletin?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
         if (d && (d.rows || d.times)) { fill(d); setStatus('Loaded the current published bulletin.', 'ok'); }
         else setStatus('No bulletin published yet — start with Auto-fill.', 'busy');
       }).catch(function () { setStatus('Couldn’t load.', 'err'); });
@@ -257,9 +262,18 @@
     document.getElementById('autoBtn').addEventListener('click', autofill);
     document.getElementById('loadBtn').addEventListener('click', loadPublished);
     document.getElementById('publishBtn').addEventListener('click', publish);
+    (function () {
+      var pw = document.getElementById('password'), tog = document.getElementById('pwToggle');
+      tog.addEventListener('click', function () {
+        var show = pw.type === 'password';
+        pw.type = show ? 'text' : 'password';
+        tog.textContent = show ? 'Hide' : 'Show';
+        pw.focus();
+      });
+    })();
 
     rowsData = standardRows({});
-    fetch('/api/bulletin', { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
+    fetch('/api/bulletin?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.json(); }).then(function (d) {
       if (d && (d.rows || d.times)) fill(d); else { renderRowsUI(); preview(); }
     }).catch(function () { renderRowsUI(); preview(); });
   })();

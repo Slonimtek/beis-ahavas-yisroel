@@ -35,7 +35,7 @@
   <script>
     (function () {
       var sheet = document.getElementById('sheet');
-      fetch('/api/bulletin', { cache: 'no-store' })
+      fetch('/api/bulletin?t=' + Date.now(), { cache: 'no-store' })
         .then(function (r) { return r.json(); })
         .then(function (d) {
           if (!d || !d.times) {
