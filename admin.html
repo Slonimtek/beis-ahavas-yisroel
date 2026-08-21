@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shul Admin · Beis Ahavas Yisroel</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#16304f; --navy-900:#0f2138; --gold:#c19a45; --gold-l:#e2c37a; --ink:#223247; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: linear-gradient(180deg,#16304f,#0f2138); min-height: 100vh; font-family: "Assistant", system-ui, sans-serif; color: #fff; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 2.4rem 1.2rem 3rem; }
+  .brand { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .3rem; margin-bottom: .4rem; }
+  .brand img { width: 66px; height: 66px; }
+  .brand .he { font-family: "Frank Ruhl Libre", serif; font-weight: 700; font-size: 1.7rem; color: var(--gold-l); }
+  .brand .en { font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: .78rem; color: rgba(255,255,255,.7); }
+  h1 { text-align: center; font-family: "Frank Ruhl Libre", serif; font-weight: 700; font-size: 1.5rem; margin: 1rem 0 .2rem; }
+  .sub { text-align: center; color: rgba(255,255,255,.65); font-size: .9rem; margin: 0 0 1.8rem; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  a.tool { display: block; text-decoration: none; color: var(--ink); background: #fff; border-radius: 14px; padding: 1.2rem 1.3rem; border: 1px solid rgba(226,195,122,.4); transition: transform .15s, box-shadow .15s; }
+  a.tool:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -16px rgba(0,0,0,.5); }
+  a.tool .ic { font-size: 1.6rem; }
+  a.tool h2 { font-family: "Frank Ruhl Libre", serif; color: var(--navy); font-size: 1.15rem; margin: .5rem 0 .3rem; }
+  a.tool p { margin: 0; font-size: .88rem; color: #55627a; }
+  a.tool .go { color: var(--gold); font-weight: 800; font-size: .82rem; margin-top: .6rem; display: inline-block; }
+  .note { margin-top: 1.8rem; text-align: center; font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.6; }
+  .note strong { color: var(--gold-l); }
+  .foot { text-align: center; margin-top: 1.4rem; }
+  .foot a { color: rgba(255,255,255,.7); text-decoration: none; font-weight: 700; font-size: .85rem; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <img src="images/logo.svg" alt="">
+      <span class="he" dir="rtl" lang="he">בית אהבת ישראל</span>
+      <span class="en">Beis Ahavas Yisroel</span>
+    </div>
+    <h1>Shul Admin</h1>
+    <p class="sub">Private tools — bookmark this page. It’s not linked anywhere public.</p>
+
+    <div class="grid">
+      <a class="tool" href="/bulletin-editor">
+        <div class="ic">📝</div>
+        <h2>Bulletin Editor</h2>
+        <p>Build &amp; publish this week’s bulletin — auto-fill times, edit rows, announcements, sponsors.</p>
+        <span class="go">Open editor →</span>
+      </a>
+      <a class="tool" href="/donate-card">
+        <div class="ic">🎟️</div>
+        <h2>Donation Cards</h2>
+        <p>Print a sheet of 10 cards with the donation QR to hand to honorees (Kohen, Levi…).</p>
+        <span class="go">Print cards →</span>
+      </a>
+      <a class="tool" href="/bulletin" target="_blank" rel="noopener">
+        <div class="ic">📄</div>
+        <h2>View Bulletin</h2>
+        <p>See the live public bulletin exactly as visitors do; download / print the PDF.</p>
+        <span class="go">View public →</span>
+      </a>
+      <a class="tool" href="/#register">
+        <div class="ic">📋</div>
+        <h2>Registrations</h2>
+        <p>The High Holidays sign-up form. Submissions arrive by email at info@beisahavasyisroel.org.</p>
+        <span class="go">Open form →</span>
+      </a>
+    </div>
+
+    <p class="note">Publishing the bulletin requires the <strong>admin password</strong>. Everything here is hidden from visitors (no public links, no search indexing).</p>
+    <div class="foot"><a href="/">← Back to public site</a></div>
+  </div>
+</body>
+</html>
