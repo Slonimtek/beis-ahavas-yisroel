@@ -33,7 +33,7 @@
     if (t.shochenAd) out.push({ type: 'time', label: 'Shochen Ad', time: t.shochenAd });
     if (t.learners) out.push({ type: 'time', label: 'Learners Service', time: t.learners });
     if (t.kiddush) out.push({ type: 'time', label: 'Kiddush', time: t.kiddush });
-    if (t.mincha) out.push({ type: 'time', label: 'Mincha', time: t.mincha, red: true, sub: 'Followed By Seuda Shlishit' });
+    if (t.mincha) out.push({ type: 'time', label: 'Mincha', time: t.mincha, red: true, sub: 'Followed By Sholosh Seudos' });
     if (t.shabbosEnds) out.push({ type: 'time', label: 'Shabbos Ends', time: t.shabbosEnds, sub: 'Say “Baruch Hamavdil” if driving back for Maariv' });
     if (t.maariv) out.push({ type: 'time', label: 'Maariv', time: t.maariv, red: true });
     return out;
@@ -53,7 +53,7 @@
     if (d.kiddushSponsor && d.kiddushSponsor.trim())
       right += '<div class="bl-spon"><div class="h">KIDDUSH IS SPONSORED BY:</div><div class="v">' + ml(d.kiddushSponsor) + '</div></div>';
     if (d.seudaSponsor && d.seudaSponsor.trim())
-      right += '<div class="bl-spon"><div class="h">SEUDA SHLISHIT IS SPONSORED BY:</div><div class="v">' + ml(d.seudaSponsor) + '</div></div>';
+      right += '<div class="bl-spon"><div class="h">SHOLOSH SEUDOS IS SPONSORED BY:</div><div class="v">' + ml(d.seudaSponsor) + '</div></div>';
     if (d.sponsorContact && d.sponsorContact.trim())
       right += '<div class="bl-sponcontact">For sponsorships, please contact ' + esc(d.sponsorContact) + '</div>';
 

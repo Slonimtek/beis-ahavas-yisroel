@@ -31,7 +31,7 @@
     <nav class="site-nav" id="siteNav">
       <a href="#register" class="nav-cta">Register</a>
       <a href="#vision">Vision</a>
-      <a href="#schedule">Schedule &amp; Luach</a>
+      <a href="#schedule">Schedule</a>
       <a href="/bulletin">Bulletin</a>
       <a href="#shabbos-meals">Shabbos Meals</a>
       <a href="#community-meal">Community Lunch</a>
@@ -85,7 +85,7 @@
     <div class="section-inner narrow">
       <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>High Holidays &mdash; Reserve Your Seats</h2>
-      <p class="lead"><strong>Seating is limited.</strong> Reserve your place for the Yamim Noraim below, and we&rsquo;ll follow up to confirm your seats with you directly.</p>
+      <p class="lead"><strong>Space is limited</strong> for both seating and child care. Reserve your place for the Yamim Noraim below, and we&rsquo;ll follow up to confirm with you directly.</p>
       <form id="regForm" class="reg-form">
         <div class="reg-field">
           <label for="reg-name">Full name</label>
@@ -113,6 +113,13 @@
           </div>
         </div>
         <div class="reg-field">
+          <span class="reg-legend">Child care <span class="reg-note">&mdash; $18 / day per child &middot; space is limited</span></span>
+          <div class="reg-childcare">
+            <label>Ages 2&ndash;3 &nbsp;<input type="number" name="childcare_ages_2_3" min="0" step="1" value="0"> <span class="reg-note">child(ren)</span></label>
+            <label>Ages 4&ndash;5 &nbsp;<input type="number" name="childcare_ages_4_5" min="0" step="1" value="0"> <span class="reg-note">child(ren)</span></label>
+          </div>
+        </div>
+        <div class="reg-field">
           <label for="reg-party">Names of everyone in your party <span class="reg-note">(optional)</span></label>
           <textarea id="reg-party" name="party" rows="3"></textarea>
         </div>
@@ -130,7 +137,8 @@
   <section id="schedule" class="section">
     <div class="section-inner">
       <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
-      <h2>Schedule &amp; <span dir="rtl" lang="he">לוח</span></h2>
+      <h2>Schedule</h2>
+      <div class="schedule-actions no-print"><button type="button" class="btn btn-outline" id="printSchedule">🖨 Print schedule</button></div>
 
       <div class="this-week-card" id="thisWeek" aria-live="polite">
         <p class="loading-text">Loading this week&rsquo;s zmanim&hellip;</p>
@@ -146,7 +154,7 @@
           <tbody>
             <tr><td>L&rsquo;chaims / Mincha (Erev Shabbos)</td><td>60 minutes before shkiah (in 5-minute increments)<span class="zman" id="zman-erev"></span></td></tr>
             <tr><td>Shacharis</td><td>9:30 AM, followed by Kiddush</td></tr>
-            <tr><td>Mincha</td><td>35 minutes before shkiah, followed by Shalosh Seudos<span class="zman" id="zman-mincha"></span></td></tr>
+            <tr><td>Mincha</td><td>35 minutes before shkiah, followed by Sholosh Seudos<span class="zman" id="zman-mincha"></span></td></tr>
             <tr><td>Maariv</td><td>60 minutes after shkiah<span class="zman" id="zman-maariv"></span></td></tr>
           </tbody>
         </table>
@@ -181,10 +189,13 @@
     <div class="section-inner narrow center">
       <p class="ornament" aria-hidden="true"><span></span>✦<span></span></p>
       <h2>Donate</h2>
-      <p class="donate-copy">We&rsquo;re setting up our giving options and will have them here soon.</p>
-      <div class="placeholder-card">
-        <p>Donations &mdash; coming soon.</p>
-        <p class="placeholder-note">Want to support us in the meantime? <a href="#contact">Reach out</a> and we&rsquo;ll follow up directly.</p>
+      <p class="donate-copy">Your support keeps our doors open. Every gift &mdash; large or small &mdash; helps sustain davening, learning, and community at Beis Ahavas Yisroel.</p>
+      <div class="donate-card">
+        <a class="btn btn-gold btn-lg" href="https://www.zeffy.com/en-US/donation-form/bais-ahavas-yisroel-general-operating-fund" target="_blank" rel="noopener">Donate to our General Fund</a>
+        <div class="donate-qr">
+          <img src="images/donate-qr.svg" alt="QR code linking to the Beis Ahavas Yisroel donation form" width="150" height="150">
+          <p class="donate-qr-cap">Scan to donate</p>
+        </div>
       </div>
     </div>
   </section>
@@ -286,6 +297,6 @@
   <button class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">&#8250;</button>
 </div>
 
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 </body>
 </html>

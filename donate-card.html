@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Cards · Beis Ahavas Yisroel</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#16304f; --gold:#b8873a; --gold-l:#e2c37a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #eef0f3; font-family: "Assistant", system-ui, sans-serif; color: #223247; }
+  .bar { background: var(--navy); color: #fff; padding: .8rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .bar a { color: var(--gold-l); text-decoration: none; font-weight: 700; }
+  .bar .t { font-weight: 700; }
+  .bar .print { background: linear-gradient(180deg,var(--gold-l),var(--gold)); color: #0f2138; border: 0; font-weight: 800; padding: .6rem 1.3rem; border-radius: 999px; cursor: pointer; }
+  .intro { max-width: 8.5in; margin: 1rem auto 0; padding: 0 1rem; color: #55627a; font-size: .92rem; text-align: center; }
+  .sheet { width: 8.5in; max-width: 100%; margin: 1rem auto 3rem; background: #fff; padding: 0.5in; display: grid; grid-template-columns: 1fr 1fr; gap: 0; box-shadow: 0 12px 45px rgba(0,0,0,.15); }
+  .card {
+    width: 3.5in; height: 2in; border: 1px dashed #c9cdd4; display: flex; align-items: center; gap: 0.14in;
+    padding: 0.16in 0.18in; overflow: hidden;
+  }
+  .card .left { flex: 1; min-width: 0; }
+  .card .emblem { width: 30px; height: 30px; vertical-align: middle; }
+  .card .name-he { font-family: "Frank Ruhl Libre", serif; font-weight: 700; color: var(--navy); font-size: 15px; line-height: 1; }
+  .card .name-en { font-family: "Frank Ruhl Libre", serif; font-weight: 700; color: var(--gold); font-size: 11px; letter-spacing: .04em; }
+  .card .yk { font-weight: 800; color: var(--navy); font-size: 13px; margin: 6px 0 2px; }
+  .card .msg { font-size: 9.5px; line-height: 1.3; color: #333; }
+  .card .url { font-size: 8.5px; color: var(--gold); font-weight: 700; margin-top: 4px; }
+  .card .qr { text-align: center; }
+  .card .qr img { width: 1.35in; height: 1.35in; display: block; }
+  .card .qr .cap { font-size: 8px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #55627a; margin-top: 2px; }
+  @media print {
+    @page { size: letter; margin: 0.5in; }
+    body { background: #fff; }
+    .no-print { display: none !important; }
+    .sheet { box-shadow: none; margin: 0 auto; padding: 0; }
+    .card { border: 1px dashed #bbb; }
+  }
+</style>
+</head>
+<body>
+  <div class="bar no-print">
+    <a href="/">&larr; Site home</a>
+    <span class="t">Donation Cards</span>
+    <button class="print" id="printBtn">🖨 Print sheet (10 cards)</button>
+  </div>
+  <p class="intro no-print">Print this sheet, cut along the dashed lines, and hand a card to each honoree (Kohen, Levi, an aliyah, etc.). They scan the QR to donate through Zeffy after Shabbos. Reprint any week — the QR always points to the shul’s donation form.</p>
+
+  <div class="sheet" id="sheet"></div>
+
+  <script>
+    var card =
+      '<div class="card"><div class="left">' +
+        '<div><img class="emblem" src="images/logo.svg" alt=""> <span class="name-he" dir="rtl" lang="he">בית אהבת ישראל</span></div>' +
+        '<div class="name-en">BEIS AHAVAS YISROEL</div>' +
+        '<div class="yk">Yasher Koach!</div>' +
+        '<div class="msg">Thank you for the honor. Please consider supporting your shul — scan the code to donate after Shabbos.</div>' +
+        '<div class="url">beisahavasyisroel.org</div>' +
+      '</div>' +
+      '<div class="qr"><img src="images/donate-qr.svg" alt="Scan to donate"><div class="cap">Scan to donate</div></div>' +
+      '</div>';
+    document.getElementById('sheet').innerHTML = new Array(10).fill(card).join('');
+    document.getElementById('printBtn').addEventListener('click', function () { window.print(); });
+  </script>
+</body>
+</html>

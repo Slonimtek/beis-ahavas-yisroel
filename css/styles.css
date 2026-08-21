@@ -213,10 +213,6 @@ h2 [lang="he"] { color: var(--gold-deep); }
   border: 1px solid rgba(193,154,69,.45); border-radius: var(--radius);
   box-shadow: var(--shadow); text-align: center; position: relative;
 }
-.this-week-card::before {
-  content: "לוח"; position: absolute; top: .8rem; right: 1.1rem;
-  font-family: var(--serif); color: rgba(193,154,69,.4); font-size: 1.1rem; letter-spacing: .1em;
-}
 .loading-text { color: var(--ink-soft); font-style: italic; margin: .4rem 0; }
 .tw-parsha { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--navy); margin: .1rem 0 .1rem; }
 .tw-hebdate { color: var(--gold-deep); font-weight: 600; margin: 0 0 1.1rem; letter-spacing: .02em; }
@@ -275,6 +271,36 @@ h2 [lang="he"] { color: var(--gold-deep); }
 .placeholder-card strong { color: var(--navy); }
 .placeholder-card a { color: var(--gold-deep); font-weight: 700; }
 .placeholder-note { font-size: .92rem; }
+
+/* ---------- Donate ---------- */
+.donate-card {
+  display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+  background: var(--warm-white); border: 1px solid rgba(193,154,69,.5); border-top: 4px solid var(--gold);
+  border-radius: var(--radius); padding: 2rem 1.5rem; box-shadow: var(--shadow-soft); max-width: 460px; margin: 0 auto;
+}
+.btn-lg { font-size: 1.08rem; padding: .95rem 2rem; }
+.donate-qr { display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+.donate-qr img { width: 150px; height: 150px; border: 1px solid rgba(193,154,69,.4); border-radius: 10px; background: #fff; padding: 6px; }
+.donate-qr-cap { margin: 0; font-weight: 700; font-size: .85rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .1em; }
+
+/* ---------- Child care fields (registration) ---------- */
+.reg-childcare { display: flex; gap: 1rem; flex-wrap: wrap; background: #fff; border: 1px solid rgba(22,48,79,.15); border-radius: var(--radius-sm); padding: .9rem 1rem; }
+.reg-childcare label { display: flex; align-items: center; gap: .45rem; font-weight: 500; color: var(--ink); }
+.reg-childcare input { width: 66px; font: inherit; padding: .5rem .5rem; border: 1px solid rgba(22,48,79,.22); border-radius: 8px; }
+
+/* ---------- Schedule print ---------- */
+.schedule-actions { text-align: center; margin: -0.4rem 0 1.4rem; }
+.schedule-actions .btn { cursor: pointer; padding: .55rem 1.3rem; }
+@media print {
+  @page { size: letter; margin: 0.5in; }
+  body.print-schedule .site-header,
+  body.print-schedule .site-footer,
+  body.print-schedule .lightbox,
+  body.print-schedule main > section:not(#schedule) { display: none !important; }
+  body.print-schedule .no-print { display: none !important; }
+  body.print-schedule #schedule { padding: 0 !important; }
+  body.print-schedule .this-week-card, body.print-schedule .table-wrap { box-shadow: none !important; break-inside: avoid; }
+}
 
 /* ---------- Highlighted nav CTA ---------- */
 .site-nav a.nav-cta {

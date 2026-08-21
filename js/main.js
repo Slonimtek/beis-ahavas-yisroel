@@ -140,6 +140,16 @@
     });
   }
 
+  // Print just the Schedule section.
+  var printSchedule = document.getElementById('printSchedule');
+  if (printSchedule) {
+    printSchedule.addEventListener('click', function () {
+      document.body.classList.add('print-schedule');
+      window.print();
+    });
+    window.addEventListener('afterprint', function () { document.body.classList.remove('print-schedule'); });
+  }
+
   // High Holidays registration form -> emailed to info@ via FormSubmit (free, no backend).
   var regForm = document.getElementById('regForm');
   if (regForm) {
