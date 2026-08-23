@@ -164,6 +164,7 @@
       fd.forEach(function (v, k) { if (k !== 'services' && k !== '_honey') payload[k] = v; });
       payload.services = fd.getAll('services').join(', ') || '(none selected)';
       payload._subject = 'High Holidays seat request — ' + (payload.name || '');
+      payload._cc = 'nicholas.taussig@dmdts.net'; // second recipient (Reb Nick)
 
       regStatus.textContent = 'Sending…';
       regStatus.className = 'reg-status sending';
