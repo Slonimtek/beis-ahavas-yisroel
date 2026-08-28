@@ -310,6 +310,10 @@ h2 [lang="he"] { color: var(--gold-deep); }
 .site-nav a.nav-cta::after { display: none; }
 .site-nav a.nav-cta:hover, .site-nav a.nav-cta:focus-visible { color: var(--navy-900); filter: brightness(1.06); }
 
+/* ---------- High Holidays campaign button ---------- */
+.hh-campaign { text-align: center; margin: 0 0 1.2rem; }
+.reg-or { text-align: center; color: var(--ink-soft); font-size: .92rem; margin: 0 0 1.5rem; }
+
 /* ---------- Registration form ---------- */
 .reg-form { text-align: left; margin-top: 1.5rem; display: grid; gap: 1.1rem; }
 .reg-field { display: flex; flex-direction: column; gap: .4rem; }
