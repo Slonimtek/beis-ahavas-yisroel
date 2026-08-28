@@ -210,14 +210,14 @@
     function round5(d) { return new Date(Math.round(d.getTime() / 300000) * 300000); }
     function autofill() {
       setStatus('Fetching this week’s zmanim…', 'busy');
-      fetch('https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEO + '&M=on&b=18')
+      fetch('https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEO + '&M=on&b=18&lg=a')
         .then(function (r) { return r.json(); })
         .then(function (data) {
           var items = data.items || [];
           var parsha = items.find(function (i) { return i.category === 'parashat'; });
           var candles = items.find(function (i) { return i.category === 'candles'; });
           var havd = items.find(function (i) { return i.category === 'havdalah'; });
-          if (parsha) { el.parshaEn.value = (parsha.title || '').replace(/^Parashat\s+/, ''); if (parsha.hebrew) el.parshaHe.value = parsha.hebrew.replace(/^פרשת\s+/, ''); }
+          if (parsha) { el.parshaEn.value = (parsha.title || '').replace(/^Parsha[st]\s+/, ''); if (parsha.hebrew) el.parshaHe.value = parsha.hebrew.replace(/^פרשת\s+/, ''); }
           var t = {};
           if (candles) {
             var cd = new Date(candles.date); t.candle = fmt(cd);

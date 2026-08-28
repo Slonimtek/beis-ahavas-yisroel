@@ -85,7 +85,7 @@
   }
 
   if (thisWeekEl) {
-    var url = 'https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEONAME_ID + '&M=on&b=18&t=' + Date.now();
+    var url = 'https://www.hebcal.com/shabbat?cfg=json&geonameid=' + GEONAME_ID + '&M=on&b=18&lg=a&t=' + Date.now();
     fetch(url, { cache: 'no-store' })
       .then(function (res) {
         if (!res.ok) throw new Error('Hebcal request failed');
