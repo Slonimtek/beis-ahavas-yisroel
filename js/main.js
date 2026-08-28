@@ -150,6 +150,30 @@
     window.addEventListener('afterprint', function () { document.body.classList.remove('print-schedule'); });
   }
 
+  // High Holidays campaign button -> Zeffy ticketing in an on-page overlay.
+  var hhBtn = document.getElementById('hhCampaignBtn');
+  var zModal = document.getElementById('zeffyModal');
+  if (hhBtn && zModal) {
+    var zFrame = document.getElementById('zeffyFrame');
+    var EMBED = 'https://www.zeffy.com/embed/ticketing/high-holidays--5787-2';
+    var openZ = function (e) {
+      if (e) e.preventDefault();
+      if (!zFrame.getAttribute('src')) zFrame.setAttribute('src', EMBED);
+      zModal.classList.add('open');
+      zModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+    var closeZ = function () {
+      zModal.classList.remove('open');
+      zModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    hhBtn.addEventListener('click', openZ);
+    document.getElementById('zeffyClose').addEventListener('click', closeZ);
+    zModal.addEventListener('click', function (e) { if (e.target === zModal) closeZ(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && zModal.classList.contains('open')) closeZ(); });
+  }
+
   // High Holidays registration form -> emailed to info@ via FormSubmit (free, no backend).
   var regForm = document.getElementById('regForm');
   if (regForm) {

@@ -87,7 +87,7 @@
       <h2>High Holidays &mdash; Reserve Your Seats</h2>
       <p class="lead"><strong>Space is limited</strong> for both seating and child care.</p>
       <div class="hh-campaign">
-        <a class="btn btn-gold btn-lg" href="https://www.zeffy.com/en-US/ticketing/high-holidays--5787-2" target="_blank" rel="noopener">🎟️ Register for the High Holidays 5787</a>
+        <a class="btn btn-gold btn-lg" id="hhCampaignBtn" href="https://www.zeffy.com/en-US/ticketing/high-holidays--5787-2" target="_blank" rel="noopener">🎟️ Register for the High Holidays 5787</a>
       </div>
       <p class="reg-or">Or send us your details below and we&rsquo;ll follow up with you directly:</p>
       <form id="regForm" class="reg-form">
@@ -285,6 +285,13 @@
   <button class="lightbox-btn lightbox-next" id="lbNext" aria-label="Next photo">&#8250;</button>
 </div>
 
-<script src="js/main.js?v=8"></script>
+<div class="zeffy-modal" id="zeffyModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="High Holidays 5787 registration">
+  <div class="zeffy-modal-inner">
+    <button class="zeffy-modal-close" id="zeffyClose" aria-label="Close registration">&times;</button>
+    <iframe id="zeffyFrame" title="High Holidays 5787 Registration" src="" allow="payment" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
+
+<script src="js/main.js?v=9"></script>
 </body>
 </html>
