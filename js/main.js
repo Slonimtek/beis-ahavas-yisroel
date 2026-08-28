@@ -74,7 +74,7 @@
       };
       setZman('zman-erev', round5(addMin(shkiah, -60)));
       setZman('zman-mincha', addMin(shkiah, -35));
-      setZman('zman-maariv', addMin(shkiah, 60));
+      setZman('zman-maariv', addMin(shkiah, 45));
     }
   }
 
