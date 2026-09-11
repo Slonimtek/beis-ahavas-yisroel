@@ -321,7 +321,19 @@ h2 [lang="he"] { color: var(--gold-deep); }
 .yt-times dt { margin: 0; color: var(--ink); font-weight: 600; }
 .yt-times dd { margin: 0; font-weight: 700; color: var(--navy); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .yt-sub { display: block; font-size: .78rem; color: var(--ink-soft); font-weight: 400; }
+.yt-times dd.note { color: var(--ink-soft); font-weight: 500; font-size: .85rem; font-style: italic; }
 @media (max-width: 860px) { .yt-grid { grid-template-columns: 1fr; } }
+@media print {
+  body.print-yomtov .site-header,
+  body.print-yomtov .site-footer,
+  body.print-yomtov .lightbox,
+  body.print-yomtov .zeffy-modal,
+  body.print-yomtov main > section:not(#yomtov) { display: none !important; }
+  body.print-yomtov .no-print { display: none !important; }
+  body.print-yomtov #yomtov { padding: 0 !important; }
+  body.print-yomtov .yt-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
+  body.print-yomtov .yt-card { break-inside: avoid; box-shadow: none; }
+}
 
 /* ---------- High Holidays campaign button ---------- */
 .hh-campaign { text-align: center; margin: 0 0 1.2rem; }

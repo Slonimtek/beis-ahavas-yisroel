@@ -149,6 +149,14 @@
     });
     window.addEventListener('afterprint', function () { document.body.classList.remove('print-schedule'); });
   }
+  var printYomtov = document.getElementById('printYomtov');
+  if (printYomtov) {
+    printYomtov.addEventListener('click', function () {
+      document.body.classList.add('print-yomtov');
+      window.print();
+    });
+    window.addEventListener('afterprint', function () { document.body.classList.remove('print-yomtov'); });
+  }
 
   // High Holidays campaign button -> Zeffy ticketing in an on-page overlay.
   var hhBtn = document.getElementById('hhCampaignBtn');
