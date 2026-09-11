@@ -331,8 +331,16 @@ h2 [lang="he"] { color: var(--gold-deep); }
   body.print-yomtov main > section:not(#yomtov) { display: none !important; }
   body.print-yomtov .no-print { display: none !important; }
   body.print-yomtov #yomtov { padding: 0 !important; }
-  body.print-yomtov .yt-grid { grid-template-columns: 1fr 1fr; gap: .6rem; }
-  body.print-yomtov .yt-card { break-inside: avoid; box-shadow: none; }
+  body.print-yomtov #yomtov .ornament { display: none !important; }
+  body.print-yomtov #yomtov h2 { font-size: 18pt !important; margin: 0 0 3px !important; }
+  body.print-yomtov #yomtov .lead { font-size: 9.5pt !important; margin: 0 0 8px !important; }
+  body.print-yomtov .yt-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
+  body.print-yomtov .yt-card { break-inside: avoid; box-shadow: none; padding: 8px 12px; }
+  body.print-yomtov .yt-day { font-size: 12.5pt; margin: 0 0 3px; }
+  body.print-yomtov .yt-times > div { padding: 2px 0; }
+  body.print-yomtov .yt-times dt, body.print-yomtov .yt-times dd { font-size: 9.5pt; }
+  body.print-yomtov .yt-times dd.note { font-size: 8.5pt; }
+  body.print-yomtov .yt-sub { font-size: 7pt; }
 }
 
 /* ---------- High Holidays campaign button ---------- */
