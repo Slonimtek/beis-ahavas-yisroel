@@ -322,6 +322,7 @@ h2 [lang="he"] { color: var(--gold-deep); }
 .yt-times dd { margin: 0; font-weight: 700; color: var(--navy); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .yt-sub { display: block; font-size: .78rem; color: var(--ink-soft); font-weight: 400; }
 .yt-times dd.note { color: var(--ink-soft); font-weight: 500; font-size: .85rem; font-style: italic; }
+.yt-print-head, .yt-print-foot { display: none; }
 @media (max-width: 860px) { .yt-grid { grid-template-columns: 1fr; } }
 @media print {
   body.print-yomtov .site-header,
@@ -330,17 +331,31 @@ h2 [lang="he"] { color: var(--gold-deep); }
   body.print-yomtov .zeffy-modal,
   body.print-yomtov main > section:not(#yomtov) { display: none !important; }
   body.print-yomtov .no-print { display: none !important; }
-  body.print-yomtov #yomtov { padding: 0 !important; }
-  body.print-yomtov #yomtov .ornament { display: none !important; }
-  body.print-yomtov #yomtov h2 { font-size: 18pt !important; margin: 0 0 3px !important; }
-  body.print-yomtov #yomtov .lead { font-size: 9.5pt !important; margin: 0 0 8px !important; }
-  body.print-yomtov .yt-grid { grid-template-columns: 1fr 1fr !important; gap: 8px !important; }
-  body.print-yomtov .yt-card { break-inside: avoid; box-shadow: none; padding: 8px 12px; }
-  body.print-yomtov .yt-day { font-size: 12.5pt; margin: 0 0 3px; }
-  body.print-yomtov .yt-times > div { padding: 2px 0; }
-  body.print-yomtov .yt-times dt, body.print-yomtov .yt-times dd { font-size: 9.5pt; }
-  body.print-yomtov .yt-times dd.note { font-size: 8.5pt; }
-  body.print-yomtov .yt-sub { font-size: 7pt; }
+  body.print-yomtov .section { padding: 0 !important; }
+  body.print-yomtov #yomtov .ornament,
+  body.print-yomtov #yomtov > .section-inner > h2,
+  body.print-yomtov #yomtov > .section-inner > .lead { display: none !important; }
+
+  /* Printed letterhead */
+  body.print-yomtov .yt-print-head { display: flex !important; align-items: center; gap: 20px; border-bottom: 2.5px solid var(--gold); padding-bottom: 10px; margin-bottom: 16px; }
+  body.print-yomtov .yt-print-head img { width: 80px; height: 80px; }
+  body.print-yomtov .yt-ph-he { font-family: var(--serif); font-weight: 900; color: var(--navy); font-size: 26pt; line-height: 1; }
+  body.print-yomtov .yt-ph-en { font-family: var(--serif); font-weight: 700; color: var(--gold-deep); font-size: 13pt; letter-spacing: .04em; margin-top: 3px; }
+  body.print-yomtov .yt-ph-title { font-weight: 700; color: var(--ink); font-size: 14pt; margin-top: 7px; letter-spacing: .01em; }
+
+  /* Balanced two-column card layout, large dignified type */
+  body.print-yomtov .yt-grid { display: block !important; column-count: 2; column-gap: 0.5in; }
+  body.print-yomtov .yt-card { break-inside: avoid; width: 100%; margin: 0 0 0.26in; padding: 14px 22px; box-shadow: none; border-top-width: 5px; }
+  body.print-yomtov .yt-day { font-size: 18pt; margin: 0 0 9px; }
+  body.print-yomtov .yt-day span { font-size: 12.5pt; }
+  body.print-yomtov .yt-times > div { padding: 5px 0; }
+  body.print-yomtov .yt-times dt, body.print-yomtov .yt-times dd { font-size: 13.5pt; }
+  body.print-yomtov .yt-times dd.note { font-size: 11.5pt; }
+  body.print-yomtov .yt-sub { font-size: 9pt; }
+
+  /* Footer */
+  body.print-yomtov .yt-print-foot { display: block !important; text-align: center; font-family: var(--serif); font-weight: 700; color: var(--navy); font-size: 19pt; margin-top: 14px; padding-top: 10px; border-top: 2px solid rgba(184,135,58,.5); }
+  body.print-yomtov .yt-print-foot .lat { display: block; font-size: 11pt; color: var(--gold-deep); font-weight: 500; letter-spacing: .02em; margin-top: 4px; font-family: var(--sans); }
 }
 
 /* ---------- High Holidays campaign button ---------- */
